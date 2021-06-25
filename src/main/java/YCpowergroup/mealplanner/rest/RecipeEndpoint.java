@@ -16,5 +16,10 @@ public class RecipeEndpoint {
         return recipeService.getAllRecipes();
     }
 
+    /*
+    @GetMapping("found-recipe")
+    public Recipe foundRecipe() { return recipeService.findRecipeByName();}
+     */
+
 
 }
