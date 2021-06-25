@@ -14,11 +14,16 @@ public class Recipe {
     private String description;
     @Column(length = 16000)
     private String instructions;
-    //private Ingredient[] ingredient;
+    private List<RecipeIngredient> ingredients;
     private boolean favorite;
     private int rating;
-    private MealType<> mealTypes;
+    private List<MealType> mealTypes;
     //private NutritionValues nutritionValuesPerServing;
+
+    public void addIngredient(double amount, String unitName) {
+        RecipeIngredient ingredient = new RecipeIngredient(this, amount, unitName);
+        ingredients.add(ingredient);
+    }
 
     public long getId() {
         return Id;
@@ -76,11 +81,11 @@ public class Recipe {
         this.rating = rating;
     }
 
-    public MealType getMealTypes() {
+    public List<MealType> getMealTypes() {
         return mealTypes;
     }
 
-    public void setMealTypes(MealType mealTypes) {
+    public void setMealTypes(List<MealType> mealTypes) {
         this.mealTypes = mealTypes;
     }
 }
