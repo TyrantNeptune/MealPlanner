@@ -1,10 +1,7 @@
 package YCpowergroup.mealplanner.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
+import javax.persistence.*;
+import java.util.*;
 
 @Entity
 public class Recipe {
@@ -13,11 +10,15 @@ public class Recipe {
     private long Id;
     private String name;
     private int servings;
+    @Column(columnDefinition = "text")
     private String description;
+    @Column(length = 16000)
     private String instructions;
-    // ingredients
+    //private Ingredient[] ingredient;
     private boolean favorite;
     private int rating;
+    private MealType<> mealTypes;
+    //private NutritionValues nutritionValuesPerServing;
 
     public long getId() {
         return Id;
@@ -74,4 +75,18 @@ public class Recipe {
     public void setRating(int rating) {
         this.rating = rating;
     }
+
+    public MealType getMealTypes() {
+        return mealTypes;
+    }
+
+    public void setMealTypes(MealType mealTypes) {
+        this.mealTypes = mealTypes;
+    }
+}
+
+enum MealType {
+    BREAKFAST,
+    LUNCH,
+    DINNER
 }

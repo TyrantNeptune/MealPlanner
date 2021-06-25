@@ -3,8 +3,7 @@ package YCpowergroup.mealplanner.rest;
 import YCpowergroup.mealplanner.controller.RecipeService;
 import YCpowergroup.mealplanner.domain.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class RecipeEndpoint {
@@ -16,4 +15,6 @@ public class RecipeEndpoint {
     public Iterable<Recipe> allRecipes() {
         return recipeService.getAllRecipes();
     }
+
+
 }
