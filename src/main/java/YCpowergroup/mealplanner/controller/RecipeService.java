@@ -10,12 +10,16 @@ public class RecipeService {
     @Autowired
     RecipeRepository recipeRepository;
 
+    RecipeService(){
+        System.out.println("RecipeService");
+    }
+
     public Iterable<Recipe> getAllRecipes() {
         return recipeRepository.findAll();
 
     }
 
     public Iterable<Recipe> findRecipeByName() {
-        return recipeRepository.find
+        return null;
     }
 }

@@ -23,6 +23,10 @@ public class Recipe {
     private List<MealType> mealTypes;
     private NutritionValues nutritionValuesPerServing;
 
+    Recipe(){
+        System.out.println("Recipe");
+    }
+
     public void addRecipeIngredient(double amount, Ingredient ingredient, String unitName) {
         RecipeIngredient recipeIngredient = new RecipeIngredient(amount, ingredient, unitName);
         ingredients.add(recipeIngredient);

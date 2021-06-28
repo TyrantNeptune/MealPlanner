@@ -13,8 +13,6 @@ public class Ingredient {
     private String name;
     NutritionValues nutritionValuesPer100g;
     FoodCateGory foodCateGory;
-
-    
 }
 
 
