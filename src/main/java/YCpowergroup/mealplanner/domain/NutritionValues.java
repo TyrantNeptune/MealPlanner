@@ -1,5 +1,8 @@
 package YCpowergroup.mealplanner.domain;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class NutritionValues {
     double netCarbs;
     double carbs;

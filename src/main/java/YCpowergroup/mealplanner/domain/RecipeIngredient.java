@@ -1,15 +1,17 @@
 package YCpowergroup.mealplanner.domain;
 
+import javax.persistence.Embeddable;
 
+@Embeddable
 public class RecipeIngredient {
-    private Recipe recipe;
+    //private Recipe recipe;
     private double amount;
     //private Ingredient ingredient;
     private Unit unit;
     private String unitPrefix;
 
-    public RecipeIngredient(Recipe recipe, double amount, String unitName) {
-        this.recipe = recipe;
+    RecipeIngredient(Recipe recipe, double amount, String unitName) {
+        //this.recipe = recipe;
         this.amount = amount;
         //this.ingredient = ingredient;
         this.unit = Unit.UNIT;

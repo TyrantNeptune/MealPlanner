@@ -14,16 +14,19 @@ public class Recipe {
     private String description;
     @Column(length = 16000)
     private String instructions;
+    @ElementCollection
     private List<RecipeIngredient> ingredients;
     private boolean favorite;
     private int rating;
+    @Enumerated(EnumType.STRING)
+    @ElementCollection
     private List<MealType> mealTypes;
-    //private NutritionValues nutritionValuesPerServing;
+    private NutritionValues nutritionValuesPerServing;
 
-    public void addIngredient(double amount, String unitName) {
-        RecipeIngredient ingredient = new RecipeIngredient(this, amount, unitName);
-        ingredients.add(ingredient);
-    }
+    //public void addRecipeIngredient(double amount, String unitName) {
+    //    RecipeIngredient ingredient = new RecipeIngredient(this, amount, unitName);
+    //    ingredients.add(ingredient);
+    //}
 
     public long getId() {
         return Id;
@@ -65,6 +68,14 @@ public class Recipe {
         this.instructions = instructions;
     }
 
+    public List<RecipeIngredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<RecipeIngredient> ingredients) {
+        this.ingredients = ingredients;
+    }
+
     public boolean isFavorite() {
         return favorite;
     }
@@ -87,6 +98,14 @@ public class Recipe {
 
     public void setMealTypes(List<MealType> mealTypes) {
         this.mealTypes = mealTypes;
+    }
+
+    public NutritionValues getNutritionValuesPerServing() {
+        return nutritionValuesPerServing;
+    }
+
+    public void setNutritionValuesPerServing(NutritionValues nutritionValuesPerServing) {
+        this.nutritionValuesPerServing = nutritionValuesPerServing;
     }
 }
 
