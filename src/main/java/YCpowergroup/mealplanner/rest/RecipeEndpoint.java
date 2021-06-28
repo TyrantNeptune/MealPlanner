@@ -16,8 +16,10 @@ public class RecipeEndpoint {
         return recipeService.getAllRecipes();
     }
 
-    //@GetMapping("found-recipe/{zoekterm}")
-    //public Recipe foundRecipe(@PathVariable String zoekterm) { return recipeService.findRecipeByName(zoekterm);}
+    @GetMapping("found-recipes/{zoekterm}")
+    public Iterable<Recipe> foundRecipe(@PathVariable String zoekterm) {
+        return recipeService.findRecipeByName(zoekterm);
+    }
 
 
 

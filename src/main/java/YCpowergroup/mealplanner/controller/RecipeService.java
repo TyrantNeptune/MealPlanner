@@ -12,10 +12,10 @@ public class RecipeService {
 
     public Iterable<Recipe> getAllRecipes() {
         return recipeRepository.findAll();
-
     }
 
-    public Iterable<Recipe> findRecipeByName() {
-        return recipeRepository.find
+    public Iterable<Recipe> findRecipeByName(String zoekterm) {
+        System.out.println("hoi");
+        return recipeRepository.findAllByNameContaining(zoekterm);
     }
 }
