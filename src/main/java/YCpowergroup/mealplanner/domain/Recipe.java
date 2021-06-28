@@ -23,10 +23,10 @@ public class Recipe {
     private List<MealType> mealTypes;
     private NutritionValues nutritionValuesPerServing;
 
-    //public void addRecipeIngredient(double amount, String unitName) {
-    //    RecipeIngredient ingredient = new RecipeIngredient(this, amount, unitName);
-    //    ingredients.add(ingredient);
-    //}
+    public void addRecipeIngredient(double amount, Ingredient ingredient, String unitName) {
+        RecipeIngredient recipeIngredient = new RecipeIngredient(amount, ingredient, unitName);
+        ingredients.add(recipeIngredient);
+    }
 
     public long getId() {
         return Id;
