@@ -21,6 +21,12 @@ public class RecipeEndpoint {
         return recipeService.findRecipeByName(zoekterm);
     }
 
+    @PostMapping("addrecipe")
+    public Recipe addRecipe(@RequestBody Recipe recipe) {
+        return recipeService.saveRecipe(recipe);
+    }
+
+
 
 
 
