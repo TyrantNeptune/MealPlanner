@@ -14,4 +14,8 @@ public class RecipeService {
         return recipeRepository.findAll();
 
     }
+
+    public Iterable<Recipe> findRecipeByName() {
+        return recipeRepository.find
+    }
 }
