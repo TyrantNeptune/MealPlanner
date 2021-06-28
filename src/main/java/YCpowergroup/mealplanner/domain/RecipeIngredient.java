@@ -1,11 +1,13 @@
 package YCpowergroup.mealplanner.domain;
 
 import javax.persistence.Embeddable;
+import javax.persistence.OneToOne;
 
 @Embeddable
 public class RecipeIngredient {
     //private Recipe recipe;
     private double amount;
+    @OneToOne
     private Ingredient ingredient;
     private Unit unit;
     private String unitPrefix;

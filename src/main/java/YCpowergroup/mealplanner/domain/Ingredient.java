@@ -3,11 +3,11 @@ package YCpowergroup.mealplanner.domain;
 import javax.persistence.*;
 import java.util.List;
 
-//@Entity
+@Entity
 public class Ingredient {
     // TODO: 25/06/2021 keep or remove the annotations?
-    //@Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
 
     private long Id;
     private String name;
