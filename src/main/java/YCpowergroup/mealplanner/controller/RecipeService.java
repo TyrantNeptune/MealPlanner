@@ -15,7 +15,7 @@ public class RecipeService {
 
     }
 
-    public Iterable<Recipe> findRecipeByName() {
-        return recipeRepository.find
-    }
+    //public Iterable<Recipe> findRecipeByName() {
+    //    return recipeRepository.find
+    //}
 }
