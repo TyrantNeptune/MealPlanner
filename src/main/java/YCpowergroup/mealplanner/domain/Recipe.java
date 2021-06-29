@@ -1,5 +1,7 @@
 package YCpowergroup.mealplanner.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.util.*;
 
@@ -14,19 +16,21 @@ public class Recipe {
     private String description;
     @Column(length = 16000)
     private String instructions;
-    @ElementCollection
-    private List<RecipeIngredient> ingredients;
     private boolean favorite;
     private int rating;
-    @Enumerated(EnumType.STRING)
-    @ElementCollection
-    private List<MealType> mealTypes;
+    //@Enumerated(EnumType.STRING)
+    //@ElementCollection
+    //private List<MealType> mealTypes;
+    @Embedded
     private NutritionValues nutritionValuesPerServing;
 
+    /*
     public void addRecipeIngredient(double amount, Ingredient ingredient, String unitName) {
         RecipeIngredient recipeIngredient = new RecipeIngredient(amount, ingredient, unitName);
         ingredients.add(recipeIngredient);
     }
+
+     */
 
     public long getId() {
         return Id;
@@ -67,7 +71,7 @@ public class Recipe {
     public void setInstructions(String instructions) {
         this.instructions = instructions;
     }
-
+/*
     public List<RecipeIngredient> getIngredients() {
         return ingredients;
     }
@@ -75,6 +79,8 @@ public class Recipe {
     public void setIngredients(List<RecipeIngredient> ingredients) {
         this.ingredients = ingredients;
     }
+
+ */
 
     public boolean isFavorite() {
         return favorite;
@@ -91,7 +97,7 @@ public class Recipe {
     public void setRating(int rating) {
         this.rating = rating;
     }
-
+/*
     public List<MealType> getMealTypes() {
         return mealTypes;
     }
@@ -99,6 +105,8 @@ public class Recipe {
     public void setMealTypes(List<MealType> mealTypes) {
         this.mealTypes = mealTypes;
     }
+
+ */
 
     public NutritionValues getNutritionValuesPerServing() {
         return nutritionValuesPerServing;
@@ -109,8 +117,4 @@ public class Recipe {
     }
 }
 
-enum MealType {
-    BREAKFAST,
-    LUNCH,
-    DINNER
-}
+

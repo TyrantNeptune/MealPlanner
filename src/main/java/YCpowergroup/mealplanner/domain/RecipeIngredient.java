@@ -1,21 +1,26 @@
 package YCpowergroup.mealplanner.domain;
 
-import javax.persistence.Embeddable;
-import javax.persistence.OneToOne;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@Embeddable
+import javax.persistence.*;
+
+@Entity
 public class RecipeIngredient {
-    //private Recipe recipe;
+    @ManyToOne
+    private Recipe recipe;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     private double amount;
-    @OneToOne
+    @ManyToOne
     private Ingredient ingredient;
+    @Enumerated(EnumType.STRING)
     private Unit unit;
     private String unitPrefix;
 
-    public RecipeIngredient(double amount, Ingredient ingredient, String unitName) {
+    public RecipeIngredient(double amount, String unitName) {
         //this.recipe = recipe;
         this.amount = amount;
-        this.ingredient = ingredient;
         this.unit = Unit.UNIT;
         this.unitPrefix = "";
         for (Unit unit : Unit.values()) {
@@ -40,14 +45,6 @@ public class RecipeIngredient {
         this.amount = amount;
     }
 
-    public Ingredient getIngredient() {
-        return ingredient;
-    }
-
-    public void setIngredient(Ingredient ingredient) {
-        this.ingredient = ingredient;
-    }
-
     public Unit getUnit() {
         return unit;
     }
@@ -65,11 +62,4 @@ public class RecipeIngredient {
     }
 }
 
-enum Unit{
-    GR,
-    ML,
-    TBSP,
-    TSP,
-    UNIT
 
-}

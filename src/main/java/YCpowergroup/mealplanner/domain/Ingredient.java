@@ -1,5 +1,7 @@
 package YCpowergroup.mealplanner.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -12,25 +14,11 @@ public class Ingredient {
     private long Id;
     private String name;
     NutritionValues nutritionValuesPer100g;
-    FoodCateGory foodCateGory;
+    @Enumerated(EnumType.STRING)
+    FoodCategory foodCategory;
 
     
 }
 
 
-enum FoodCateGory {
-    ARTIFICIAL_MEAT,
-    BREAD,
-    DAIRY,
-    DRINK,
-    FAT,
-    FISH,
-    FRUIT,
-    GRAINS,
-    MEAT,
-    NOODLES,
-    OIL,
-    RICE,
-    SNACK,
-    VEGETABLE,
-}
+
