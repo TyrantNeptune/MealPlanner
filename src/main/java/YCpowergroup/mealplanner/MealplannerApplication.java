@@ -9,6 +9,7 @@ public class MealplannerApplication {
 	public static void main(String[] args) {
 		System.out.println("Im here");
 		SpringApplication.run(MealplannerApplication.class, args);
+
 	}
 
 }
