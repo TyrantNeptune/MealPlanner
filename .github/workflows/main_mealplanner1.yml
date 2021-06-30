@@ -14,21 +14,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-#          - uses: azure/login@v1
-#            with:
-#              creds: '$({ secrets.AZURE_CREDENTIALS })'
-#
-#          - uses:
-#            with:
-#              app-name: 'mealplanner2'
-#              app-settings-json: '$({ secrets.APP_SETTINGS })'
-#              connection-string-json: '$({ secrets.CONNECTION_STRINGS })'
-#              general-setting-json: '{"alwaysOn": "false", "webSocketsEnabled": "true"}'
-#            id: settings
-#            - run: echo "The webapp-url is ${{ steps.settings.outputs.webapp-url }}"
-#            - run: |
-#                   az logout
-
     - uses: actions/checkout@v2
 
     - name: Set up Java version
