@@ -34,14 +34,6 @@ public class Recipe {
     @Embedded
     private NutritionValues nutritionValuesPerServing;
 
-    /*
-    public void addRecipeIngredient(double amount, Ingredient ingredient, String unitName) {
-        RecipeIngredient recipeIngredient = new RecipeIngredient(amount, ingredient, unitName);
-        ingredients.add(recipeIngredient);
-    }
-
-     */
-
     public long getId() {
         return Id;
     }

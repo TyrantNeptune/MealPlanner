@@ -1,5 +1,6 @@
 package YCpowergroup.mealplanner.domain.meal;
 
+import YCpowergroup.mealplanner.domain.MealType;
 import YCpowergroup.mealplanner.domain.Recipe;
 
 import javax.persistence.*;
@@ -16,6 +17,8 @@ public class Meal {
     private MealPlan mealPlan;
     @ManyToOne
     private Recipe recipe;
+    @Enumerated(EnumType.STRING)
+    private MealType mealType;
 
     public long getId() {
         return Id;

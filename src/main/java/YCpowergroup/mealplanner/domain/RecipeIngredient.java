@@ -46,11 +46,11 @@ public class RecipeIngredient {
     }
 
     public long getId() {
-        return id;
+        return Id;
     }
 
     public void setId(long id) {
-        this.id = id;
+        this.Id = id;
     }
 
     public Ingredient getIngredient() {
