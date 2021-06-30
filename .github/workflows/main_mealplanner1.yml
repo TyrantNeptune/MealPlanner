@@ -25,7 +25,9 @@ jobs:
         connection-string-json: '$({ secrets.CONNECTION_STRINGS })'
         general-setting-json: '{"alwaysOn": "false", "webSocketsEnabled": "true"}'
       id: settings
-
+    - run: echo "The webapp-url is ${{ steps.settings.outputs.webapp-url }}"
+    - run: |
+           az logout
     - uses: actions/checkout@v2
 
     - name: Set up Java version
