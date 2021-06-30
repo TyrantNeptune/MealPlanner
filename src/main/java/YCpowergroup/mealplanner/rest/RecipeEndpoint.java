@@ -1,7 +1,9 @@
 package YCpowergroup.mealplanner.rest;
 
 import YCpowergroup.mealplanner.controller.RecipeService;
+import YCpowergroup.mealplanner.domain.NutritionValues;
 import YCpowergroup.mealplanner.domain.Recipe;
+import YCpowergroup.mealplanner.domain.RecipeIngredient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +27,15 @@ public class RecipeEndpoint {
     public Recipe addRecipe(@RequestBody Recipe recipe) {
         return recipeService.saveRecipe(recipe);
     }
+
+//    @PostMapping("abc")
+//    public void checkit(@RequestBody Rdto checkit) {
+//        NutritionValues nv = new NutritionValues();
+//        nv.setCalories(checkit.getA());
+//        Recipe recipe = new Recipe();
+//        RecipeIngredient recipeIngredient = new RecipeIngredient();
+//        recipeIngredient.setRecipe(recipe);
+//    }
 
 
 

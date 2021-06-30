@@ -14,8 +14,8 @@ public class Ingredient {
     private long Id;
     private String name;
     NutritionValues nutritionValuesPer100g;
-    @Enumerated(EnumType.STRING)
-    FoodCategory foodCategory;
+//    @Enumerated(EnumType.STRING)
+//    FoodCategory foodCategory;
 
     
 }

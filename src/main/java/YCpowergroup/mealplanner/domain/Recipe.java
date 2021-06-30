@@ -10,17 +10,27 @@ public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long Id;
+
     private String name;
+
     private int servings;
+
     @Column(columnDefinition = "text")
     private String description;
+
     @Column(length = 16000)
     private String instructions;
+
     private boolean favorite;
+
     private int rating;
-    //@Enumerated(EnumType.STRING)
-    //@ElementCollection
-    //private List<MealType> mealTypes;
+
+    @ElementCollection(targetClass = MealType.class)
+    @CollectionTable(name = "recipeMealtypes")
+    @Column(name = "mealType", nullable = false)
+    @Enumerated(EnumType.STRING)
+    Collection<MealType> mealTypes;
+
     @Embedded
     private NutritionValues nutritionValuesPerServing;
 
@@ -97,16 +107,14 @@ public class Recipe {
     public void setRating(int rating) {
         this.rating = rating;
     }
-/*
-    public List<MealType> getMealTypes() {
+
+    public Collection<MealType> getMealTypes() {
         return mealTypes;
     }
 
-    public void setMealTypes(List<MealType> mealTypes) {
+    public void setMealTypes(Collection<MealType> mealTypes) {
         this.mealTypes = mealTypes;
     }
-
- */
 
     public NutritionValues getNutritionValuesPerServing() {
         return nutritionValuesPerServing;
