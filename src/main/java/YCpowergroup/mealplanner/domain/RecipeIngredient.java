@@ -10,7 +10,7 @@ public class RecipeIngredient {
     private Recipe recipe;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private long Id;
     private double amount;
     @ManyToOne
     private Ingredient ingredient;
