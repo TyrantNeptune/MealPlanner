@@ -26,7 +26,7 @@ jobs:
         HOST: ${{ secrets.AZURE_DB_HOST }}
         USER: ${{ secrets.AZURE_DB_USER }}
         PW: ${{ secrets.AZURE_DB_PW }}
-      run: mkdir -R src/main/resources && echo -e "spring.datasource.url=$HOST\nspring.datasource.username=$USER\nspring.datasource.password=$PW\nspring.jpa.database_platform=org.hibernate.dialect.MySQL55Dialect\nspring.jpa.hibernate.ddl-auto=none\nspring.jpa.show-sql=false\nspring.jpa.properties.hibernate.format_sql=false\nspring.datasource.testWhileIdle=true\nspring.datasource.timeBetweenEvictionRunsMillis=3600000\nspring.datasource.validationQuery=SELECT 1\nserver.port=8082\n" > src/main/resources/application.properties
+      run: mkdir src/main/resources && echo -e "spring.datasource.url=$HOST\nspring.datasource.username=$USER\nspring.datasource.password=$PW\nspring.jpa.database_platform=org.hibernate.dialect.MySQL55Dialect\nspring.jpa.hibernate.ddl-auto=none\nspring.jpa.show-sql=false\nspring.jpa.properties.hibernate.format_sql=false\nspring.datasource.testWhileIdle=true\nspring.datasource.timeBetweenEvictionRunsMillis=3600000\nspring.datasource.validationQuery=SELECT 1\nserver.port=8082\n" > src/main/resources/application.properties
 
     - name: Build with Maven
       run: mvn clean install
