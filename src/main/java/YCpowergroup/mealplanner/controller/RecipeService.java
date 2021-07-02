@@ -18,9 +18,9 @@ public class RecipeService {
 		return recipeRepository.findAll();
 	}
 
-	public void findRecipeByName(String value) {
-		List<Recipe> recipes = recipeRepository.findAllByNameContaining(value);
-		System.out.println(recipes.size());
+	public Iterable<Recipe> findRecipeByName(String value) {
+		System.out.println("In findRecipeByName");
+		return recipeRepository.findAllByNameContaining(value);
 	}
 
 	public Iterable<Ingredient> findAllIngredients() {
@@ -36,5 +36,11 @@ public class RecipeService {
 		System.out.println("We have arrived in the service "+recipeId+"<,.>"+ingredient.getName());
 	}
 
+	public List<Recipe> findRecipeByIngredient(String ingredientname) {
+		Ingredient i = ingredientRepository.findIngredientByName(ingredientname);
+		long id = i.getId();
+		System.out.println("in findRecipeByIngredient: "+ ingredientname + "<..>" + id);
 
+		return recipeRepository.findAllByIngredient(id);
+	}
 }
