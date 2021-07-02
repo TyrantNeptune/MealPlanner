@@ -41,6 +41,12 @@ public class RecipeEndpoint {
 	}
 
 
+	@PostMapping("addrecipewithingredient")
+	public void addRecipeWithNewIngredient(@RequestBody Ingredient ingredient, @RequestBody Recipe recipe){
+		System.out.println("ingredient works: "+ingredient.getName());
+		System.out.println("recipe works: "+recipe.getName());
+	}
+
 	// ophalen van EN recept EN ingredient
 	// D -- nieuw recept met meteen al een nieuw ingredient
 	// ---------  nieuw ingredient toevoegen aan bestaand recept
