@@ -1,4 +1,4 @@
-package YCpowergroup.mealplanner.rest;
+package YCpowergroup.mealplanner.oud;
 
 public class Rdto {
     int a;

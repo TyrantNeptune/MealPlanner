@@ -1,4 +1,4 @@
-package YCpowergroup.mealplanner.domain.meal;
+package YCpowergroup.mealplanner.oud;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import java.time.LocalDate;
 
 @Entity
-public class MealPlan {
+public class MealPlanDeprecated {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long Id;

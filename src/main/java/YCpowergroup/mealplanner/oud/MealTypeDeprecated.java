@@ -1,8 +1,8 @@
-package YCpowergroup.mealplanner.domain;
+package YCpowergroup.mealplanner.oud;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public enum MealType {
+public enum MealTypeDeprecated {
     @JsonProperty("Breakfast")
     BREAKFAST,
     @JsonProperty("Lunch")

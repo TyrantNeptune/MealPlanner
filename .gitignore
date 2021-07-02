@@ -34,3 +34,7 @@ build/
 
 ### application properties ###
 **/application.properties
+
+### mac
+*.DS_Store
+/bin/
