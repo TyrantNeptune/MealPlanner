@@ -11,27 +11,30 @@ public class Ingredient {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long Id;
     
-    private String naam;
-    private int kalorien;
-    
+    private String name;
+    private int calories;
+
 	public long getId() {
 		return Id;
 	}
+
 	public void setId(long id) {
 		Id = id;
 	}
-	public String getNaam() {
-		return naam;
+
+	public String getName() {
+		return name;
 	}
-	public void setNaam(String naam) {
-		this.naam = naam;
+
+	public void setName(String name) {
+		this.name = name;
 	}
-	public int getKalorien() {
-		return kalorien;
+
+	public int getCalories() {
+		return calories;
 	}
-	public void setKalorien(int kalorien) {
-		this.kalorien = kalorien;
+
+	public void setCalories(int calories) {
+		this.calories = calories;
 	}
-    
-    
 }
