@@ -1,23 +1,23 @@
-package YCpowergroup.mealplanner.domain;
+package YCpowergroup.mealplanner.oud;
 
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class NutritionValues {
+public class NutritionValuesDeprecated {
     double netCarbs;
     double carbs;
     double fats;
     double protein;
     double calories;
 
-    public NutritionValues(double netCarbs, double carbs, double fats, double protein, double calories) {
+    public NutritionValuesDeprecated(double netCarbs, double carbs, double fats, double protein, double calories) {
         this.netCarbs = netCarbs;
         this.carbs = carbs;
         this.fats = fats;
         this.protein = protein;
         this.calories = calories;
     }
-    public NutritionValues() {
+    public NutritionValuesDeprecated() {
 
     }
 

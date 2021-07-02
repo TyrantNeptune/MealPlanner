@@ -1,24 +1,21 @@
-package YCpowergroup.mealplanner.domain.meal;
-
-import YCpowergroup.mealplanner.domain.MealType;
-import YCpowergroup.mealplanner.domain.Recipe;
+package YCpowergroup.mealplanner.oud;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-public class Meal {
+public class MealDeprecated {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long Id;
     private int servings;
     private LocalDate date;
     @ManyToOne
-    private MealPlan mealPlan;
+    private MealPlanDeprecated mealPlanDeprecated;
     @ManyToOne
-    private Recipe recipe;
+    private RecipeDeprecated recipeDeprecated;
     @Enumerated(EnumType.STRING)
-    private MealType mealType;
+    private MealTypeDeprecated mealTypeDeprecated;
 
     public long getId() {
         return Id;
@@ -44,19 +41,19 @@ public class Meal {
         this.date = date;
     }
 
-    public MealPlan getMealPlan() {
-        return mealPlan;
+    public MealPlanDeprecated getMealPlan() {
+        return mealPlanDeprecated;
     }
 
-    public void setMealPlan(MealPlan mealPlan) {
-        this.mealPlan = mealPlan;
+    public void setMealPlan(MealPlanDeprecated mealPlanDeprecated) {
+        this.mealPlanDeprecated = mealPlanDeprecated;
     }
 
-    public Recipe getRecipe() {
-        return recipe;
+    public RecipeDeprecated getRecipe() {
+        return recipeDeprecated;
     }
 
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
+    public void setRecipe(RecipeDeprecated recipeDeprecated) {
+        this.recipeDeprecated = recipeDeprecated;
     }
 }
