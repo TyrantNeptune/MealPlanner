@@ -20,6 +20,14 @@ public class Meal {
     @Enumerated(EnumType.STRING)
     private MealType mealType;
 
+    public MealType getMealType() {
+        return mealType;
+    }
+
+    public void setMealType(MealType mealType) {
+        this.mealType = mealType;
+    }
+
     public long getId() {
         return Id;
     }

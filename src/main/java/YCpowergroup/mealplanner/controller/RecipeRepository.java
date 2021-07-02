@@ -12,3 +12,5 @@ public interface RecipeRepository extends CrudRepository<Recipe, Long> {
     List<Recipe> findAllByNameContaining(String name);
 
 }
+
+
