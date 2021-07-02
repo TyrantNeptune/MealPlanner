@@ -10,31 +10,31 @@ import java.util.List;
 public class RecipeService {
 	@Autowired
 	RecipeRepository recipeRepository;
-	
+
 	@Autowired
 	IngredientRepository ingredientRepository;
-	
-	public Iterable<Recipe> geefAlleRecepten() {
+
+	public Iterable<Recipe> findAllRecipes() {
 		return recipeRepository.findAll();
 	}
 
-	public void zoekBijNaam(String zoekterm) {
-		List<Recipe> recepten = recipeRepository.findAllByNaamContaining(zoekterm);
-		System.out.println(recepten.size());
+	public void findRecipeByName(String value) {
+		List<Recipe> recipes = recipeRepository.findAllByNameContaining(value);
+		System.out.println(recipes.size());
 	}
-	
-	public Iterable<Ingredient> geefAlleIngredienten() {
+
+	public Iterable<Ingredient> findAllIngredients() {
 		return ingredientRepository.findAll();
 	}
-	
-	public void voegIngredientToeAanRecept(long receptid, Ingredient ingredient) {
-		Recipe recept = recipeRepository.findById(receptid).get();
+
+	public void addIngredientToRecipe(long recipeId, Ingredient ingredient) {
+		Recipe recipe = recipeRepository.findById(recipeId).get();
 		Ingredient i = ingredientRepository.save(ingredient);
-		recept.setIngredient(i);
-		recipeRepository.save(recept);
-		
-		System.out.println("we zijn aangekomen in de service"+receptid+"<,.>"+ingredient.getNaam());
+		recipe.setIngredient(i);
+		recipeRepository.save(recipe);
+
+		System.out.println("We have arrived in the service "+recipeId+"<,.>"+ingredient.getName());
 	}
-	
-	
+
+
 }

@@ -14,24 +14,24 @@ import org.springframework.web.bind.annotation.RestController;
 public class RecipeEndpoint {
 	@Autowired
 	RecipeService recipeService;
-	
-	@GetMapping("allerecepten")
-	public Iterable<Recipe> allerecepten(){
-		System.out.println("ik ben in alle recepten");
-		return recipeService.geefAlleRecepten();
+
+	@GetMapping("all-recipes")
+	public Iterable<Recipe> allRecipes(){
+		System.out.println("In all recipes");
+		return recipeService.findAllRecipes();
 	}
-	
-	@GetMapping("vindreceptmetnaam")  // straks een naam
-	public String vindreceptbijnaam(){
-		String aardappel = "aardappel";
-		recipeService.zoekBijNaam(aardappel);
-		return "gevonden";
+
+	@GetMapping("findrecipebyname")  // straks een naam
+	public String findRecipeByName(){
+		String potato = "potato";
+		recipeService.findRecipeByName(potato);
+		return "found";
 	}
-	
-	@PostMapping("voegingredienttoe/{receptid}")
-	public void voegingredienttoe(@RequestBody Ingredient ingredient, @PathVariable long receptid) {
-		System.out.println("hij doet het"+ingredient.getNaam());
-		recipeService.voegIngredientToeAanRecept(receptid,ingredient);
+
+	@PostMapping("addingredient/{recipeid}")
+	public void addIngredientToRecipe(@RequestBody Ingredient ingredient, @PathVariable long recipeid) {
+		System.out.println("it works: "+ingredient.getName());
+		recipeService.addIngredientToRecipe(recipeid,ingredient);
 	}
 	// ophalen van EN recept EN ingredient
 	// nieuw recept met meteen al een nieuw ingredient
@@ -40,11 +40,11 @@ public class RecipeEndpoint {
 	// recepten vinden met naam van ingredient
 	// recept lijst van ingredienten geven OneTOMany
 	// Dependency toevoegen (DevTools)
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
 }
