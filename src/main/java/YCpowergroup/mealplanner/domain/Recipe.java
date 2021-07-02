@@ -13,41 +13,44 @@ public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long Id;
-    
-    
-    private String naam;
-    
-    private String omschrijving;
-    
-    @OneToOne
-    private Ingredient ingredient;
-    
-    
+
+
+	private String name;
+
+	private String description;
+
+	@OneToOne
+	private Ingredient ingredient;
+
+
 	public long getId() {
 		return Id;
 	}
 	public void setId(long id) {
 		Id = id;
 	}
-	public String getNaam() {
-		return naam;
+
+	public String getName() {
+		return name;
 	}
-	public void setNaam(String naam) {
-		this.naam = naam;
+
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getOmschrijving() {
-		return omschrijving;
+
+	public String getDescription() {
+		return description;
 	}
-	public void setOmschrijving(String omschrijving) {
-		this.omschrijving = omschrijving;
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
+
 	public Ingredient getIngredient() {
 		return ingredient;
 	}
+
 	public void setIngredient(Ingredient ingredient) {
 		this.ingredient = ingredient;
 	}
-    
-    
-
 }
