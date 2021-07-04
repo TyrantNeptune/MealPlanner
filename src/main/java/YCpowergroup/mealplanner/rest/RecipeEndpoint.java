@@ -21,11 +21,10 @@ public class RecipeEndpoint {
 		return recipeService.findAllRecipes();
 	}
 
-	@GetMapping("findrecipebyname")  // straks een naam
-	public String findRecipeByName(){
-		String potato = "potato";
-		recipeService.findRecipeByName(potato);
-		return "found";
+	@GetMapping("findrecipesbyname/{recipename}")  // straks een naam
+	public Iterable<Recipe> findRecipesByName(@PathVariable String recipename){
+		System.out.println("finding recipes: "+ recipename);
+		return recipeService.findRecipesByName(recipename);
 	}
 
 	@PostMapping("addingredient/{recipeid}")

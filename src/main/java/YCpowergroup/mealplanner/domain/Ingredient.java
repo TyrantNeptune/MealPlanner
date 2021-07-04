@@ -13,6 +13,7 @@ public class Ingredient {
     
     private String name;
     private int calories;
+    private double carbs;
 
 	public long getId() {
 		return Id;
@@ -36,5 +37,13 @@ public class Ingredient {
 
 	public void setCalories(int calories) {
 		this.calories = calories;
+	}
+
+	public double getCarbs() {
+		return carbs;
+	}
+
+	public void setCarbs(double carbs) {
+		this.carbs = carbs;
 	}
 }
