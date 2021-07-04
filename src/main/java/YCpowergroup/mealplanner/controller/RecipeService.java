@@ -5,6 +5,7 @@ import YCpowergroup.mealplanner.domain.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RecipeService {
@@ -41,5 +42,13 @@ public class RecipeService {
 		System.out.println("in findRecipeByIngredient: "+ ingredientname);
 
 		return recipeRepository.findAllByIngredient(i);
+	}
+
+	public Recipe addRecipe(Recipe recipe) {
+		return recipeRepository.save(recipe);
+	}
+
+	public Optional<Recipe> findRecipeById(long recipeid) {
+		return recipeRepository.findById(recipeid);
 	}
 }

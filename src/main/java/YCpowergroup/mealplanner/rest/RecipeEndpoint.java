@@ -10,12 +10,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.swing.text.html.Option;
+import java.util.Optional;
+
 @RestController
 public class RecipeEndpoint {
 	@Autowired
 	RecipeService recipeService;
 
-	@GetMapping("all-recipes")
+	@GetMapping("allrecipes")
 	public Iterable<Recipe> allRecipes(){
 		System.out.println("In all recipes");
 		return recipeService.findAllRecipes();
@@ -27,13 +30,19 @@ public class RecipeEndpoint {
 		return recipeService.findRecipesByName(recipename);
 	}
 
+	@GetMapping("findrecipebyid/{recipeid}")
+	public Optional<Recipe> findRecipeById(@PathVariable long recipeid) {
+		System.out.println("finding recipe with id: " + recipeid);
+		return recipeService.findRecipeById(recipeid);
+	}
+
 	@PostMapping("addingredient/{recipeid}")
 	public void addIngredientToRecipe(@RequestBody Ingredient ingredient, @PathVariable long recipeid) {
 		System.out.println("it works: "+ingredient.getName());
 		recipeService.addIngredientToRecipe(recipeid,ingredient);
 	}
 
-	@GetMapping("findrecipebyingredient/{ingredientname}")
+	@GetMapping("findrecipesbyingredient/{ingredientname}")
 	public Iterable<Recipe> findRecipeByIngredient(@PathVariable String ingredientname) {
 		System.out.println("find recipe with: "+ingredientname);
 		return recipeService.findRecipeByIngredient(ingredientname);
@@ -45,6 +54,14 @@ public class RecipeEndpoint {
 		System.out.println("ingredient works: "+ingredient.getName());
 		System.out.println("recipe works: "+recipe.getName());
 	}
+
+	@PostMapping("addrecipe")
+	public Recipe addRecipe(@RequestBody Recipe recipe) {
+		System.out.println("adding recipe " + recipe.getName() + "to database");
+		return recipeService.addRecipe(recipe);
+
+	}
+
 
 	// ophalen van EN recept EN ingredient
 	// D -- nieuw recept met meteen al een nieuw ingredient
