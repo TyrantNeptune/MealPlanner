@@ -18,7 +18,7 @@ public class MealplannerApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/").allowedOrigins("https://ambitious-tree-0d2dbd703.azurestaticapps.net/");
+				registry.addMapping("/allrecipes").allowedOrigins("https://ambitious-tree-0d2dbd703.azurestaticapps.net/");
 			}
 		};
 	}
