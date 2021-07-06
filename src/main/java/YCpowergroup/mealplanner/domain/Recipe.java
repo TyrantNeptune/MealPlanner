@@ -1,12 +1,13 @@
 package YCpowergroup.mealplanner.domain;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Recipe {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long Id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
 	private String name;
 
@@ -14,17 +15,17 @@ public class Recipe {
 
 	private String description;
 
-	@OneToOne
-	private Ingredient ingredient;
-
 	private String picture;
 
+	@OneToMany(mappedBy = "recipe")
+	private List<RecipeIngredient> recipeIngredients;
 
 	public long getId() {
-		return Id;
+		return id;
 	}
+
 	public void setId(long id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public String getName() {
@@ -51,19 +52,19 @@ public class Recipe {
 		this.description = description;
 	}
 
-	public Ingredient getIngredient() {
-		return ingredient;
-	}
-
-	public void setIngredient(Ingredient ingredient) {
-		this.ingredient = ingredient;
-	}
-
 	public String getPicture() {
 		return picture;
 	}
 
 	public void setPicture(String picture) {
 		this.picture = picture;
+	}
+
+	public List<RecipeIngredient> getRecipeIngredients() {
+		return recipeIngredients;
+	}
+
+	public void setRecipeIngredients(List<RecipeIngredient> recipeIngredients) {
+		this.recipeIngredients = recipeIngredients;
 	}
 }
