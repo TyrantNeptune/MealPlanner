@@ -2,8 +2,11 @@ package YCpowergroup.mealplanner.controller;
 
 import YCpowergroup.mealplanner.domain.Ingredient;
 import YCpowergroup.mealplanner.domain.Recipe;
+import YCpowergroup.mealplanner.domain.RecipeIngredient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +17,9 @@ public class RecipeService {
 
 	@Autowired
 	IngredientRepository ingredientRepository;
+
+	@Autowired
+	RecipeIngredientRepository recipeIngredientRepository;
 
 	public Iterable<Recipe> findAllRecipes() {
 		return recipeRepository.findAll();
@@ -28,20 +34,15 @@ public class RecipeService {
 		return ingredientRepository.findAll();
 	}
 
-	public void addIngredientToRecipe(long recipeId, Ingredient ingredient) {
-		Recipe recipe = recipeRepository.findById(recipeId).get();
-		Ingredient i = ingredientRepository.save(ingredient);
-		recipe.setIngredient(i);
-		recipeRepository.save(recipe);
-
-		System.out.println("We have arrived in the service "+recipeId+"<..>"+ingredient.getName());
-	}
-
-	public List<Recipe> findRecipeByIngredient(String ingredientname) {
+	public Iterable<Recipe> findRecipeByIngredient(String ingredientname) {
 		Ingredient i = ingredientRepository.findIngredientByName(ingredientname);
+		List<RecipeIngredient> recipeIngredients = recipeIngredientRepository.findByIngredient(i);
+		List<Long> recipeIngredientIds = new ArrayList<>();
+		for (RecipeIngredient recipeIngredient : recipeIngredients) {
+			recipeIngredientIds.add(recipeIngredient.getId());
+		}
 		System.out.println("in findRecipeByIngredient: "+ ingredientname);
-
-		return recipeRepository.findAllByIngredient(i);
+		return recipeRepository.findByRecipeIngredientsIdIn(recipeIngredientIds);
 	}
 
 	public Recipe addRecipe(Recipe recipe) {
@@ -50,5 +51,13 @@ public class RecipeService {
 
 	public Optional<Recipe> findRecipeById(long recipeid) {
 		return recipeRepository.findById(recipeid);
+	}
+
+	public Ingredient addIngredientToDb(Ingredient ingredient) {
+		return ingredientRepository.save(ingredient);
+	}
+
+	public void addRecipeIngredient(RecipeIngredient recipeIngredient) {
+		recipeIngredientRepository.save(recipeIngredient);
 	}
 }

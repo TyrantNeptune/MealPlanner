@@ -4,6 +4,7 @@ import java.util.List;
 
 import YCpowergroup.mealplanner.domain.Ingredient;
 import YCpowergroup.mealplanner.domain.Recipe;
+import YCpowergroup.mealplanner.domain.RecipeIngredient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
@@ -12,5 +13,5 @@ import org.springframework.stereotype.Component;
 public interface RecipeRepository extends CrudRepository<Recipe,Long> {
 	List<Recipe> findAllByNameContaining(String recipename);
 
-	List<Recipe> findAllByIngredient(Ingredient ingredient);
+	List<Recipe> findByRecipeIngredientsIdIn(List<Long> recipeIngredientIds);
 }
