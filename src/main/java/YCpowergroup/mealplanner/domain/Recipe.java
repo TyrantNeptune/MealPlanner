@@ -1,12 +1,6 @@
 package YCpowergroup.mealplanner.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-
-import YCpowergroup.mealplanner.domain.Ingredient;
+import javax.persistence.*;
 
 @Entity
 public class Recipe {
@@ -14,13 +8,16 @@ public class Recipe {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long Id;
 
-
 	private String name;
+
+	private int servings;
 
 	private String description;
 
 	@OneToOne
 	private Ingredient ingredient;
+
+	private String picture;
 
 
 	public long getId() {
@@ -38,6 +35,14 @@ public class Recipe {
 		this.name = name;
 	}
 
+	public int getServings() {
+		return servings;
+	}
+
+	public void setServings(int servings) {
+		this.servings = servings;
+	}
+
 	public String getDescription() {
 		return description;
 	}
@@ -52,5 +57,13 @@ public class Recipe {
 
 	public void setIngredient(Ingredient ingredient) {
 		this.ingredient = ingredient;
+	}
+
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
 	}
 }
