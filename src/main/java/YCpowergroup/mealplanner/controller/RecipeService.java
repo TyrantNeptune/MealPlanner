@@ -5,6 +5,7 @@ import YCpowergroup.mealplanner.domain.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RecipeService {
@@ -18,9 +19,9 @@ public class RecipeService {
 		return recipeRepository.findAll();
 	}
 
-	public Iterable<Recipe> findRecipeByName(String value) {
+	public Iterable<Recipe> findRecipesByName(String recipename) {
 		System.out.println("In findRecipeByName");
-		return recipeRepository.findAllByNameContaining(value);
+		return recipeRepository.findAllByNameContaining(recipename);
 	}
 
 	public Iterable<Ingredient> findAllIngredients() {
@@ -33,14 +34,21 @@ public class RecipeService {
 		recipe.setIngredient(i);
 		recipeRepository.save(recipe);
 
-		System.out.println("We have arrived in the service "+recipeId+"<,.>"+ingredient.getName());
+		System.out.println("We have arrived in the service "+recipeId+"<..>"+ingredient.getName());
 	}
 
 	public List<Recipe> findRecipeByIngredient(String ingredientname) {
 		Ingredient i = ingredientRepository.findIngredientByName(ingredientname);
-		long id = i.getId();
-		System.out.println("in findRecipeByIngredient: "+ ingredientname + "<..>" + id);
+		System.out.println("in findRecipeByIngredient: "+ ingredientname);
 
-		return recipeRepository.findAllByIngredient(id);
+		return recipeRepository.findAllByIngredient(i);
+	}
+
+	public Recipe addRecipe(Recipe recipe) {
+		return recipeRepository.save(recipe);
+	}
+
+	public Optional<Recipe> findRecipeById(long recipeid) {
+		return recipeRepository.findById(recipeid);
 	}
 }
