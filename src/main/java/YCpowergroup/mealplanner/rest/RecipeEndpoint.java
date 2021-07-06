@@ -70,11 +70,6 @@ public class RecipeEndpoint {
 		return recipeService.addIngredientToDb(ingredient);
 	}
 
-	@PostMapping("addmeal/{mealid}")
-	public void addMeal(@RequestBody Meal meal){
-		System.out.println("it works");
-	}
-
 	// ophalen van EN recept EN ingredient
 	// D -- nieuw recept met meteen al een nieuw ingredient
 	// ---------  nieuw ingredient toevoegen aan bestaand recept
