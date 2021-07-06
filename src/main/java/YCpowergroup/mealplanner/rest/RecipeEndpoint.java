@@ -48,13 +48,6 @@ public class RecipeEndpoint {
 		return recipeService.findRecipeByIngredient(ingredientname);
 	}
 
-
-	@PostMapping("addrecipewithingredient")
-	public void addRecipeWithNewIngredient(@RequestBody Ingredient ingredient, @RequestBody Recipe recipe){
-		System.out.println("ingredient works: "+ingredient.getName());
-		System.out.println("recipe works: "+recipe.getName());
-	}
-
 	@PostMapping("addrecipe")
 	public Recipe addRecipe(@RequestBody Recipe recipe) {
 		System.out.println("adding recipe " + recipe.getName() + "to database");
