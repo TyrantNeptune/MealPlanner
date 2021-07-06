@@ -6,7 +6,9 @@ import YCpowergroup.mealplanner.domain.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.event.ListDataEvent;
 import javax.swing.text.html.Option;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -32,11 +34,11 @@ public class RecipeEndpoint {
 		return recipeService.findRecipeById(recipeid);
 	}
 
-	@PostMapping("addingredient/{recipeid}")
-	public void addIngredientToRecipe(@RequestBody Ingredient ingredient, @PathVariable long recipeid) {
-		System.out.println("it works: "+ingredient.getName());
-		recipeService.addIngredientToRecipe(recipeid,ingredient);
-	}
+//	@PostMapping("addingredient/{recipeid}")
+//	public void addIngredientToRecipe(@RequestBody Ingredient ingredient, @PathVariable long recipeid) {
+//		System.out.println("it works: "+ingredient.getName());
+//		recipeService.addIngredientToRecipe(recipeid,ingredient);
+//	}
 
 	@GetMapping("findrecipesbyingredient/{ingredientname}")
 	public Iterable<Recipe> findRecipeByIngredient(@PathVariable String ingredientname) {
@@ -45,11 +47,11 @@ public class RecipeEndpoint {
 	}
 
 
-	@PostMapping("addrecipewithingredient")
-	public void addRecipeWithNewIngredient(@RequestBody Ingredient ingredient, @RequestBody Recipe recipe){
-		System.out.println("ingredient works: "+ingredient.getName());
-		System.out.println("recipe works: "+recipe.getName());
-	}
+//	@PostMapping("addrecipewithingredient")
+//	public void addRecipeWithNewIngredient(@RequestBody Ingredient ingredient, @RequestBody Recipe recipe){
+//		System.out.println("ingredient works: "+ingredient.getName());
+//		System.out.println("recipe works: "+recipe.getName());
+//	}
 
 	@PostMapping("addrecipe")
 	public Recipe addRecipe(@RequestBody Recipe recipe) {
@@ -58,6 +60,11 @@ public class RecipeEndpoint {
 
 	}
 
+	@PostMapping("addingredienttodb")
+	public Ingredient addIngredientToDb(@RequestBody Ingredient ingredient) {
+		System.out.println("adding ingredient " + ingredient.getName() + " to datbase");
+		return recipeService.addIngredientToDb(ingredient);
+	}
 
 	// ophalen van EN recept EN ingredient
 	// D -- nieuw recept met meteen al een nieuw ingredient
