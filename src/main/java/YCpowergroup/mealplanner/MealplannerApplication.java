@@ -13,13 +13,4 @@ public class MealplannerApplication {
 		SpringApplication.run(MealplannerApplication.class, args);
 	}
 
-	@Bean
-	public WebMvcConfigurer corsConfigurer() {
-		return new WebMvcConfigurer() {
-			@Override
-			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/allrecipes").allowedOrigins("https://ambitious-tree-0d2dbd703.azurestaticapps.net/");
-			}
-		};
-	}
 }

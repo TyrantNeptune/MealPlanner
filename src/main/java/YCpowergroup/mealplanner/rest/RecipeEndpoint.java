@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.swing.text.html.Option;
 import java.util.Optional;
 
-@CrossOrigin
 @RestController
 public class RecipeEndpoint {
 	@Autowired
