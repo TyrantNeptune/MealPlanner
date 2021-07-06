@@ -2,6 +2,7 @@ package YCpowergroup.mealplanner.rest;
 
 import YCpowergroup.mealplanner.controller.RecipeService;
 import YCpowergroup.mealplanner.domain.Ingredient;
+import YCpowergroup.mealplanner.domain.Meal;
 import YCpowergroup.mealplanner.domain.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -53,6 +54,11 @@ public class RecipeEndpoint {
 		System.out.println("adding recipe " + recipe.getName() + "to database");
 		return recipeService.addRecipe(recipe);
 
+	}
+
+	@PostMapping("addmeal/{mealid}")
+	public void addMeal(@RequestBody Meal meal){
+		System.out.println("it works");
 	}
 
 
