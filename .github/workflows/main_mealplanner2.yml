@@ -29,10 +29,10 @@ jobs:
       run: mkdir src/main/resources && echo -e "spring.datasource.url=$HOST\nspring.datasource.username=$USER\nspring.datasource.password=$PW\nspring.jpa.database_platform=org.hibernate.dialect.MySQL55Dialect\nspring.jpa.hibernate.ddl-auto=create-drop\nspring.jpa.show-sql=false\nspring.jpa.properties.hibernate.format_sql=false\nspring.datasource.testWhileIdle=true\nspring.datasource.timeBetweenEvictionRunsMillis=3600000\nspring.datasource.validationQuery=SELECT 1\nserver.port=8082\n" > src/main/resources/application.properties
 
     - name: Run maven tests
-      run: mvn test
+      run: mvn clean test
 
-    - name: Build and test with Maven
-      run: mvn clean install
+    - name: Build the application with Maven
+      run: mvn install
 
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v2
