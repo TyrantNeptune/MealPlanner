@@ -17,6 +17,7 @@ public class Ingredient {
     private double netCarbs;
     private double fats;
     private double protein;
+    private double density; // nutrition values * density to calculate per 100ml
 
 	public long getId() {
 		return Id;
@@ -72,5 +73,13 @@ public class Ingredient {
 
 	public void setProtein(double protein) {
 		this.protein = protein;
+	}
+
+	public double getDensity() {
+		return density;
+	}
+
+	public void setDensity(double density) {
+		this.density = density;
 	}
 }
