@@ -19,19 +19,19 @@ public class RecipeEndpoint {
 
 	@GetMapping("allrecipes")
 	public Iterable<Recipe> allRecipes(){
-		System.out.println("In all recipes");
+		System.out.println("Finding all recipes...");
 		return recipeService.findAllRecipes();
 	}
 
 	@GetMapping("findrecipesbyname/{recipename}")  // straks een naam
 	public Iterable<Recipe> findRecipesByName(@PathVariable String recipename){
-		System.out.println("finding recipes: "+ recipename);
+		System.out.println("Finding recipes with name: "+ recipename);
 		return recipeService.findRecipesByName(recipename);
 	}
 
 	@GetMapping("findrecipebyid/{recipeid}")
 	public Optional<Recipe> findRecipeById(@PathVariable long recipeid) {
-		System.out.println("finding recipe with id: " + recipeid);
+		System.out.println("Finding recipe with id: " + recipeid);
 		return recipeService.findRecipeById(recipeid);
 	}
 
@@ -42,9 +42,15 @@ public class RecipeEndpoint {
 //	}
 
 	@GetMapping("findrecipesbyingredient/{ingredientname}")
-	public Iterable<Recipe> findRecipeByIngredient(@PathVariable String ingredientname) {
-		System.out.println("find recipe with: "+ingredientname);
-		return recipeService.findRecipeByIngredient(ingredientname);
+	public List<Recipe> findRecipeByIngredient(@PathVariable String ingredientname) {
+		System.out.println("Finding recipe with ingredient: "+ingredientname);
+		List<Recipe> recipes = recipeService.findRecipesByIngredient(ingredientname);
+		if (recipes.size() == 0) {
+			System.out.println("No recipes found!");
+		} else {
+			System.out.println(recipes.size() + " recipes found!");
+		}
+		return recipes;
 	}
 
 //	@PostMapping("addrecipewithingredient")
@@ -55,15 +61,21 @@ public class RecipeEndpoint {
 
 	@PostMapping("addrecipe")
 	public Recipe addRecipe(@RequestBody Recipe recipe) {
-		System.out.println("adding recipe " + recipe.getName() + "to database");
+		System.out.println("Adding recipe " + recipe.getName() + "to database");
 		return recipeService.addRecipe(recipe);
 
 	}
 
 	@PostMapping("addingredienttodb")
 	public Ingredient addIngredientToDb(@RequestBody Ingredient ingredient) {
-		System.out.println("adding ingredient " + ingredient.getName() + " to datbase");
+		System.out.println("Adding ingredient " + ingredient.getName() + " to datbase");
 		return recipeService.addIngredientToDb(ingredient);
+	}
+
+	@GetMapping("findingredientsbyname/{ingredientname}")
+	public Iterable<Ingredient> findIngredientsByName(@PathVariable String ingredientname) {
+		System.out.println("Finding ingredient: " + ingredientname);
+		return recipeService.findIngredientsByName(ingredientname);
 	}
 
 	// ophalen van EN recept EN ingredient
