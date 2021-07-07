@@ -30,7 +30,7 @@ jobs:
 
 #    This testing phase isn't necessary, because install is already running the tests
 #    - name: Run maven tests
-#      run: mvn clean test
+#      run: mvn test
 
     - name: Build the application with Maven
       run: mvn clean install
