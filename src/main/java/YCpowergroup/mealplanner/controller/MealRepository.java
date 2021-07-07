@@ -6,5 +6,5 @@ import org.springframework.stereotype.Component;
 
 @Component
 public interface MealRepository extends CrudRepository<Meal, Long> {
-    Meal findMealById(long Id);
+
 }
