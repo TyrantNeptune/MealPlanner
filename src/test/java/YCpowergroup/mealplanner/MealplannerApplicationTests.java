@@ -26,6 +26,6 @@ class MealplannerApplicationTests {
 
 	@Test
 	void recipeServingsTest() {
-		assertEquals(4, testRecipe.getServings());
+		assertEquals(0, testRecipe.getServings());
 	}
 }
