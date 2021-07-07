@@ -2,6 +2,7 @@ package YCpowergroup.mealplanner.rest;
 
 import YCpowergroup.mealplanner.controller.RecipeService;
 import YCpowergroup.mealplanner.domain.Ingredient;
+import YCpowergroup.mealplanner.domain.Meal;
 import YCpowergroup.mealplanner.domain.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -45,7 +46,6 @@ public class RecipeEndpoint {
 		System.out.println("find recipe with: "+ingredientname);
 		return recipeService.findRecipeByIngredient(ingredientname);
 	}
-
 
 //	@PostMapping("addrecipewithingredient")
 //	public void addRecipeWithNewIngredient(@RequestBody Ingredient ingredient, @RequestBody Recipe recipe){
