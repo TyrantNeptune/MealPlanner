@@ -37,6 +37,14 @@ jobs:
         name: java-app
         path: '${{ github.workspace }}/target/*.jar'
 
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run basic tests on the application
+        run: mvn test
+        continue-on-error: false
+
   deploy:
     runs-on: ubuntu-latest
     needs: build
