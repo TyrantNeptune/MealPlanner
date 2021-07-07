@@ -38,6 +38,7 @@ jobs:
         path: '${{ github.workspace }}/target/*.jar'
 
   test:
+    needs: build
     runs-on: ubuntu-latest
 
     steps:
