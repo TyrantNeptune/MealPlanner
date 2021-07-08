@@ -1,5 +1,6 @@
 package YCpowergroup.mealplanner.controller;
 
+import YCpowergroup.mealplanner.domain.MealPlan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,6 @@ public class MealPlanService {
     @Autowired
     RecipeRepository recipeRepository;
 
-
+    public Iterable<MealPlan> findAllMealPlans(){return mealPlanRepository.findAll();}
 
 }
