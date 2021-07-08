@@ -4,15 +4,21 @@ import YCpowergroup.mealplanner.controller.MealPlanService;
 import YCpowergroup.mealplanner.domain.Meal;
 import YCpowergroup.mealplanner.domain.MealPlan;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.swing.text.html.Option;
+import java.util.Optional;
 
 @RestController
 public class MealPlanEndpoint {
     @Autowired
     MealPlanService mealPlanService;
+
+    @GetMapping("findmealplanbyid/{mealplanid}")
+    public Optional<MealPlan> findMealPlanById(@PathVariable long mealplanid){
+        System.out.println("Finding mealplan with id: "+mealplanid);
+        return mealPlanService.findMealPlanById(mealplanid);
+    }
 
     @GetMapping("allmealplans")
     public Iterable<MealPlan> allMealPlans(){
@@ -32,10 +38,10 @@ public class MealPlanEndpoint {
         return mealPlanService.findAllMeals();
     }
 
-    @PostMapping("addmeal")
-    public Meal addMeal(@RequestBody Meal meal){
-        System.out.println("Adding meal on "+meal.getDate()+" to mealplan "+meal.getMealPlan());
-        return mealPlanService.addMeal(meal);
+    @PostMapping("addmeal/{mealplanid}")
+    public Meal addMeal(@RequestBody Meal meal, @PathVariable long mealplanid){
+        System.out.println("Adding meal on "+meal.getDate()+" to mealplan with id "+mealplanid);
+        return mealPlanService.addMealToMealPlan(meal, mealplanid);
     }
 
 }
