@@ -17,4 +17,9 @@ public class MealPlanService {
 
     public Iterable<MealPlan> findAllMealPlans(){return mealPlanRepository.findAll();}
 
+    public MealPlan addMealPlan(MealPlan mealPlan){
+        System.out.println("Adding new mealplan...");
+        return mealPlanRepository.save(mealPlan);
+    }
+
 }
