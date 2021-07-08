@@ -15,6 +15,8 @@ public class MealPlan {
     private LocalDate start;
     private LocalDate end;
 
+    //Meals moeten hier nog bij
+
     public long getId() {
         return Id;
     }

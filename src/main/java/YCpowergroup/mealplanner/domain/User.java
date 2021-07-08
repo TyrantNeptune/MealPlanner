@@ -18,6 +18,7 @@ public class User {
     @OneToMany
     private List<Recipe> recipes;
 
+    
     public long getId() {
         return id;
     }
