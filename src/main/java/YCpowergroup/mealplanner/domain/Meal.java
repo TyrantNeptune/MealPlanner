@@ -1,5 +1,7 @@
 package YCpowergroup.mealplanner.domain;
 
+import net.minidev.json.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -20,6 +22,7 @@ public class Meal {
     private Recipe recipe;
 
     @ManyToOne
+    @JsonIgnore
     private MealPlan mealPlan;
 
     public long getId() {
