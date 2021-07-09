@@ -15,7 +15,7 @@ public class Recipe {
 
 	private String description;
 
-	private String picture;
+	//private String picture;
 
 	@OneToMany(mappedBy = "recipe")
 	private List<RecipeIngredient> recipeIngredients;
@@ -52,13 +52,17 @@ public class Recipe {
 		this.description = description;
 	}
 
-	public String getPicture() {
+	/*public String getPicture() {
 		return picture;
 	}
 
-	public void setPicture(String picture) {
+	 */
+
+	/*public void setPicture(String picture) {
 		this.picture = picture;
 	}
+
+	 */
 
 	public List<RecipeIngredient> getRecipeIngredients() {
 		return recipeIngredients;

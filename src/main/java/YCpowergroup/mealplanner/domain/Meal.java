@@ -16,7 +16,7 @@ public class Meal {
     @OneToOne
     private Recipe recipe;
 
-    @OneToOne
+    @ManyToOne
     private MealPlan mealPlan;
 
     public long getId() {
