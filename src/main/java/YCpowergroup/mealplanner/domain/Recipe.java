@@ -66,7 +66,6 @@ public class Recipe {
 		this.picture = picture;
 	}
 
-
 	public List<RecipeIngredient> getRecipeIngredients() {
 		return recipeIngredients;
 	}
