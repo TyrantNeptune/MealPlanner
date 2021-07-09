@@ -27,6 +27,12 @@ public class RecipeEndpoint {
 		return recipeService.findAllRecipes();
 	}
 
+	@GetMapping("allingredients")
+	public Iterable<Ingredient> allIngredients() {
+		System.out.println("Finding all ingredients...");
+		return recipeService.findAllIngredients();
+	}
+
 	@GetMapping("findrecipesbyname/{recipename}")  // straks een naam
 	public Iterable<Recipe> findRecipesByName(@PathVariable String recipename){
 		System.out.println("Finding recipes with name: "+ recipename);
