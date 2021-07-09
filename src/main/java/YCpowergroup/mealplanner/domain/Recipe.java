@@ -56,12 +56,9 @@ public class Recipe {
 		return picture;
 	}
 
-
-
 	public void setPicture(String picture) {
 		this.picture = picture;
 	}
-
 
 	public List<RecipeIngredient> getRecipeIngredients() {
 		return recipeIngredients;
