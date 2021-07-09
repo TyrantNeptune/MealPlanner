@@ -2,8 +2,8 @@ package YCpowergroup.mealplanner.rest;
 
 import YCpowergroup.mealplanner.controller.RecipeService;
 import YCpowergroup.mealplanner.domain.Ingredient;
-import YCpowergroup.mealplanner.domain.Meal;
 import YCpowergroup.mealplanner.domain.Recipe;
+import YCpowergroup.mealplanner.domain.RecipeIngredient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.swing.event.ListDataEvent;
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,11 +43,16 @@ public class RecipeEndpoint {
 		return recipeService.findRecipeById(recipeid);
 	}
 
-//	@PostMapping("addingredient/{recipeid}")
-//	public void addIngredientToRecipe(@RequestBody Ingredient ingredient, @PathVariable long recipeid) {
-//		System.out.println("it works: "+ingredient.getName());
-//		recipeService.addIngredientToRecipe(recipeid,ingredient);
-//	}
+	@PostMapping("addrecipeingredient")
+	public void addIngredientToRecipe(@RequestBody RecipeIngredient recipeIngredient) {
+		System.out.println("it works");
+		recipeService.addRecipeIngredient(recipeIngredient);
+	}
+
+	@GetMapping("getrecipeingredient/{id}")
+	public Optional<RecipeIngredient> getRecipeIngredient(@PathVariable long id) {
+		return recipeService.findRecipeIngredientById(id);
+	}
 
 	@GetMapping("findrecipesbyingredient/{ingredientname}")
 	public List<Recipe> findRecipeByIngredient(@PathVariable String ingredientname) {

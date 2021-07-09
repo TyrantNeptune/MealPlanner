@@ -62,7 +62,12 @@ public class RecipeService {
 	}
 
 	public void addRecipeIngredient(RecipeIngredient recipeIngredient) {
+		System.out.println("in addRecipeIngredient Service");
 		recipeIngredientRepository.save(recipeIngredient);
+	}
+
+	public Optional<RecipeIngredient> findRecipeIngredientById(long id) {
+		return recipeIngredientRepository.findById(id);
 	}
 
 	public Iterable<Ingredient> findIngredientsByName(String ingredientName) {
