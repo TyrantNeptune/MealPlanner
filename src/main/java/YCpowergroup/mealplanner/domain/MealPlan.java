@@ -1,10 +1,8 @@
 package YCpowergroup.mealplanner.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class MealPlan {
@@ -15,7 +13,8 @@ public class MealPlan {
     private LocalDate start;
     private LocalDate end;
 
-    //Meals moeten hier nog bij
+    @OneToMany(mappedBy = "mealPlan")
+    private List<Meal> meals;
 
     public long getId() {
         return Id;
@@ -39,5 +38,13 @@ public class MealPlan {
 
     public void setEnd(LocalDate end) {
         this.end = end;
+    }
+
+    public List<Meal> getMeals() {
+        return meals;
+    }
+
+    public void setMeals(List<Meal> meals) {
+        this.meals = meals;
     }
 }
