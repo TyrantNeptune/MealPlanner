@@ -19,10 +19,10 @@ public class RecipeIngredient {
 
     private double amount;
 
-    //@Enumerated(EnumType.STRING)
-    //private Unit unit;
+    @Enumerated(EnumType.STRING)
+    private Unit unit;
 
-    private String unitPrefix;
+    //private String unitPrefix;
 
 //    public RecipeIngredient(double amount, String unitName) {
 //        //this.recipe = recipe;
@@ -75,12 +75,20 @@ public class RecipeIngredient {
         this.amount = amount;
     }
 
-    public String getUnitPrefix() {
-        return unitPrefix;
+//    public String getUnitPrefix() {
+//        return unitPrefix;
+//    }
+//
+//    public void setUnitPrefix(String unitPrefix) {
+//        this.unitPrefix = unitPrefix;
+//    }
+
+    public Unit getUnit() {
+        return unit;
     }
 
-    public void setUnitPrefix(String unitPrefix) {
-        this.unitPrefix = unitPrefix;
+    public void setUnit(Unit unit) {
+        this.unit = unit;
     }
 }
 

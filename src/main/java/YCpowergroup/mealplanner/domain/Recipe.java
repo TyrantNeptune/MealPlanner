@@ -19,6 +19,12 @@ public class Recipe {
 
 	private String picture;
 
+	private boolean breakfast;
+
+	private boolean lunch;
+
+	private boolean dinner;
+
 	@OneToMany(mappedBy = "recipe")
 	private List<RecipeIngredient> recipeIngredients;
 
@@ -64,6 +70,30 @@ public class Recipe {
 
 	public void setPicture(String picture) {
 		this.picture = picture;
+	}
+
+	public boolean isBreakfast() {
+		return breakfast;
+	}
+
+	public void setBreakfast(boolean breakfast) {
+		this.breakfast = breakfast;
+	}
+
+	public boolean isLunch() {
+		return lunch;
+	}
+
+	public void setLunch(boolean lunch) {
+		this.lunch = lunch;
+	}
+
+	public boolean isDinner() {
+		return dinner;
+	}
+
+	public void setDinner(boolean dinner) {
+		this.dinner = dinner;
 	}
 
 	public List<RecipeIngredient> getRecipeIngredients() {
