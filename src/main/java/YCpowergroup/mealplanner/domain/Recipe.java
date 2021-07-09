@@ -15,6 +15,8 @@ public class Recipe {
 
 	private String description;
 
+	private String instructions;
+
 	private String picture;
 
 	@OneToMany(mappedBy = "recipe")
@@ -51,6 +53,10 @@ public class Recipe {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public String getInstructions() { return instructions; }
+
+	public void setInstructions(String instructions) {	this.instructions = instructions; }
 
 	public String getPicture() {
 		return picture;

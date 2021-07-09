@@ -43,6 +43,7 @@ public class RecipeEndpoint {
 		return recipeService.findRecipeById(recipeid);
 	}
 
+
 	@PostMapping("addrecipeingredient")
 	public void addIngredientToRecipe(@RequestBody RecipeIngredient recipeIngredient) {
 		System.out.println("it works");
@@ -76,7 +77,6 @@ public class RecipeEndpoint {
 	public Recipe addRecipe(@RequestBody Recipe recipe) {
 		System.out.println("Adding recipe " + recipe.getName() + "to database");
 		return recipeService.addRecipe(recipe);
-
 	}
 
 	@PostMapping("addingredienttodb")
