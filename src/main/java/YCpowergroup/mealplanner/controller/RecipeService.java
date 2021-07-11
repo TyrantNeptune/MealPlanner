@@ -25,9 +25,9 @@ public class RecipeService {
 		return recipeRepository.findAll();
 	}
 
-	public Iterable<Recipe> findRecipesByName(String recipename) {
+	public Iterable<Recipe> findRecipesByName(String recipeName) {
 		System.out.println("In findRecipeByName");
-		return recipeRepository.findAllByNameContaining(recipename);
+		return recipeRepository.findAllByNameContaining(recipeName);
 	}
 
 	public Iterable<Ingredient> findAllIngredients() {
@@ -53,8 +53,8 @@ public class RecipeService {
 		return recipeRepository.save(recipe);
 	}
 
-	public Optional<Recipe> findRecipeById(long recipeid) {
-		return recipeRepository.findById(recipeid);
+	public Optional<Recipe> findRecipeById(long recipeId) {
+		return recipeRepository.findById(recipeId);
 	}
 
 	public Ingredient addIngredientToDb(Ingredient ingredient) {
@@ -74,5 +74,26 @@ public class RecipeService {
 		List<Ingredient> ingredients = ingredientRepository.findAllByNameContaining(ingredientName);
 		System.out.println("Found " + ingredients.size() + " ingredients with name: " + ingredientName);
 		return ingredientRepository.findAllByNameContaining(ingredientName);
+	}
+
+	public List<Recipe> findRecipesByMealType(String mealType) {
+		List<Recipe> recipes = new ArrayList<>();
+		if (mealType.equals("breakfast")) {
+			List<Recipe> recipeList = recipeRepository.findByBreakfastTrue();
+			recipes.addAll(recipeList);
+		}
+		if (mealType.equals("lunch")) {
+			List<Recipe> recipeList = recipeRepository.findByLunchTrue();
+			recipes.addAll(recipeList);
+		}
+		if (mealType.equals("dinner")) {
+			List<Recipe> recipeList = recipeRepository.findByDinnerTrue();
+			recipes.addAll(recipeList);
+		}
+		return recipes;
+	}
+
+	public void addMultipleRecipes(Iterable<Recipe> recipes) {
+		recipeRepository.saveAll(recipes);
 	}
 }
