@@ -13,8 +13,10 @@ public class Recipe {
 
 	private int servings;
 
+	@Column(columnDefinition = "text")
 	private String description;
 
+	@Column(columnDefinition = "text")
 	private String instructions;
 
 	private String picture;
