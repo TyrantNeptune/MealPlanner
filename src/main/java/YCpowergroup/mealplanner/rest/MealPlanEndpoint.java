@@ -61,4 +61,10 @@ public class MealPlanEndpoint {
         return mealPlanService.findMealsByDate(LocalDate.parse(mealdate));
     }
 
+    @GetMapping("findmealsbytype/{mealtype}")
+    public List<Meal> findMealByMealType(@PathVariable String mealtype){
+        System.out.println("Finding "+mealtype+"S");
+        return mealPlanService.findMealsByMealType(mealtype);
+    }
+
 }
