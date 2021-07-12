@@ -3,10 +3,14 @@ package YCpowergroup.mealplanner.rest;
 import YCpowergroup.mealplanner.controller.MealPlanService;
 import YCpowergroup.mealplanner.domain.Meal;
 import YCpowergroup.mealplanner.domain.MealPlan;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.swing.text.html.Option;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -42,6 +46,19 @@ public class MealPlanEndpoint {
     public Meal addMeal(@RequestBody Meal meal, @PathVariable long mealplanid){
         System.out.println("Adding meal on "+meal.getDate()+" to mealplan with id "+mealplanid);
         return mealPlanService.addMealToMealPlan(meal, mealplanid);
+    }
+
+    @GetMapping("findmealbyid/{mealid}")
+    public Optional<Meal> findMealById(@PathVariable long mealid){
+        System.out.println("Finding meal with id: "+mealid);
+        return mealPlanService.findMealById(mealid);
+    }
+
+    @GetMapping("findmealsondate/{mealdate}")
+    public List<Meal> findMealsByDate(@PathVariable String mealdate){
+        System.out.println("Finding meals on "+mealdate);
+        DateTimeFormatter dtf = DateTimeFormatter.ISO_LOCAL_DATE;
+        return mealPlanService.findMealsByDate(LocalDate.parse(mealdate));
     }
 
 }
