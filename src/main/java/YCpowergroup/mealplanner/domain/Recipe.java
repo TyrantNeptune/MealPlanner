@@ -97,7 +97,6 @@ public class Recipe {
 	public void setDinner(boolean dinner) {
 		this.dinner = dinner;
 	}
-
 	public List<RecipeIngredient> getRecipeIngredients() {
 		return recipeIngredients;
 	}
