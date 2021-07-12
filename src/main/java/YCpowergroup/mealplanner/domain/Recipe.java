@@ -13,9 +13,19 @@ public class Recipe {
 
 	private int servings;
 
+	@Column(columnDefinition = "text")
 	private String description;
+	
+	@Column(columnDefinition = "text")
+	private String instructions;
 
 	//private String picture;
+
+	private boolean breakfast;
+
+	private boolean lunch;
+
+	private boolean dinner;
 
 	@OneToMany(mappedBy = "recipe")
 	private List<RecipeIngredient> recipeIngredients;
@@ -52,11 +62,13 @@ public class Recipe {
 		this.description = description;
 	}
 
+	public String getInstructions() { return instructions; }
+
+	public void setInstructions(String instructions) {	this.instructions = instructions; }
+
 	/*public String getPicture() {
 		return picture;
 	}
-
-
 
 	public void setPicture(String picture) {
 		this.picture = picture;
@@ -64,7 +76,29 @@ public class Recipe {
 
 	 */
 
+	public boolean isBreakfast() {
+		return breakfast;
+	}
 
+	public void setBreakfast(boolean breakfast) {
+		this.breakfast = breakfast;
+	}
+
+	public boolean isLunch() {
+		return lunch;
+	}
+
+	public void setLunch(boolean lunch) {
+		this.lunch = lunch;
+	}
+
+	public boolean isDinner() {
+		return dinner;
+	}
+
+	public void setDinner(boolean dinner) {
+		this.dinner = dinner;
+	}
 	public List<RecipeIngredient> getRecipeIngredients() {
 		return recipeIngredients;
 	}

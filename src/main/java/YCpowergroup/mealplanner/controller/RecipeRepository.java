@@ -11,7 +11,13 @@ import org.springframework.stereotype.Component;
 
 @Component
 public interface RecipeRepository extends CrudRepository<Recipe,Long> {
-	List<Recipe> findAllByNameContaining(String recipename);
+	List<Recipe> findByNameLike(String recipename);
 
 	List<Recipe> findByRecipeIngredientsIdIn(List<Long> recipeIngredientIds);
+
+	List<Recipe> findByBreakfastTrue();
+
+	List<Recipe> findByLunchTrue();
+
+	List<Recipe> findByDinnerTrue();
 }
