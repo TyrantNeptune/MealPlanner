@@ -27,7 +27,7 @@ public class RecipeService {
 
 	public Iterable<Recipe> findRecipesByName(String recipeName) {
 		System.out.println("In findRecipeByName");
-		return recipeRepository.findByNameLike("%"+recipename+"%");
+		return recipeRepository.findByNameLike("%"+recipeName+"%");
 	}
 
 	public Iterable<Ingredient> findAllIngredients() {

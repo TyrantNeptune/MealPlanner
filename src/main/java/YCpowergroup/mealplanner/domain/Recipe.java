@@ -19,7 +19,7 @@ public class Recipe {
 	@Column(columnDefinition = "text")
 	private String instructions;
 
-	private String picture;
+	//private String picture;
 
 	private boolean breakfast;
 
@@ -66,13 +66,15 @@ public class Recipe {
 
 	public void setInstructions(String instructions) {	this.instructions = instructions; }
 
-	public String getPicture() {
+	/*public String getPicture() {
 		return picture;
 	}
 
 	public void setPicture(String picture) {
 		this.picture = picture;
 	}
+
+	 */
 
 	public boolean isBreakfast() {
 		return breakfast;

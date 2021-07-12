@@ -2,9 +2,12 @@ package YCpowergroup.mealplanner.controller;
 
 import YCpowergroup.mealplanner.domain.Meal;
 import YCpowergroup.mealplanner.domain.MealPlan;
+import YCpowergroup.mealplanner.domain.MealType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -37,6 +40,18 @@ public class MealPlanService {
         Optional<MealPlan> mealPlan = mealPlanRepository.findById(mealPlanId);
         mealInRepo.setMealPlan(mealPlan.get());
         return mealInRepo;
+    }
+
+    public Optional<Meal> findMealById(long mealId){
+        return mealRepository.findById(mealId);
+    }
+
+    public List<Meal> findMealsByDate(LocalDate mealDate){
+        return mealRepository.findAllByDate(mealDate);
+    }
+
+    public List<Meal> findMealsByMealType(String mealType){
+        return mealRepository.findAllByMealType(MealType.valueOf(mealType));
     }
 
 }
