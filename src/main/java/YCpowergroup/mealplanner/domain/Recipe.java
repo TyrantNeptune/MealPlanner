@@ -15,7 +15,7 @@ public class Recipe {
 
 	@Column(columnDefinition = "text")
 	private String description;
-	
+
 	@Column(columnDefinition = "text")
 	private String instructions;
 
