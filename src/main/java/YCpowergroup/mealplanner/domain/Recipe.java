@@ -1,5 +1,7 @@
 package YCpowergroup.mealplanner.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -28,6 +30,7 @@ public class Recipe {
 	private boolean dinner;
 
 	@OneToMany(mappedBy = "recipe")
+	@JsonManagedReference(value = "name")
 	private List<RecipeIngredient> recipeIngredients;
 
 	public long getId() {
