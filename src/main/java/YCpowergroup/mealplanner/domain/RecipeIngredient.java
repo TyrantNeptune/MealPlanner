@@ -1,6 +1,9 @@
 package YCpowergroup.mealplanner.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 
@@ -11,7 +14,7 @@ public class RecipeIngredient {
     private long id;
 
     @ManyToOne
-    @JsonIgnore
+    @JsonBackReference(value = "name")
     private Recipe recipe;
 
     @ManyToOne

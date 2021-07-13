@@ -1,5 +1,7 @@
 package YCpowergroup.mealplanner.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -14,6 +16,7 @@ public class MealPlan {
     private LocalDate end;
 
     @OneToMany(mappedBy = "mealPlan")
+    @JsonManagedReference(value = "name")
     private List<Meal> meals;
 
     public long getId() {

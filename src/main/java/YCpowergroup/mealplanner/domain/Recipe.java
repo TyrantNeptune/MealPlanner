@@ -1,5 +1,7 @@
 package YCpowergroup.mealplanner.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -19,7 +21,7 @@ public class Recipe {
 	@Column(columnDefinition = "text")
 	private String instructions;
 
-	private String picture;
+	//private String picture;
 
 	private boolean breakfast;
 
@@ -28,6 +30,7 @@ public class Recipe {
 	private boolean dinner;
 
 	@OneToMany(mappedBy = "recipe")
+	@JsonManagedReference(value = "name")
 	private List<RecipeIngredient> recipeIngredients;
 
 	public long getId() {
@@ -66,13 +69,15 @@ public class Recipe {
 
 	public void setInstructions(String instructions) {	this.instructions = instructions; }
 
-	public String getPicture() {
+	/*public String getPicture() {
 		return picture;
 	}
 
 	public void setPicture(String picture) {
 		this.picture = picture;
 	}
+
+	 */
 
 	public boolean isBreakfast() {
 		return breakfast;
