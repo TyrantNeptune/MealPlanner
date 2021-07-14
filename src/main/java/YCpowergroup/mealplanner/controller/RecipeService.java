@@ -104,7 +104,7 @@ public class RecipeService {
 		return totalValueInRecipe;
 	}
 
-	public void updateNutritionValues(Long recipeId) {
+	public Recipe updateNutritionValues(Long recipeId) {
 		Recipe recipe = recipeRepository.findById(recipeId).get();
 		List<RecipeIngredient> recipeIngredients = recipe.getRecipeIngredients();
 		double totalCarbsInRecipe = 0.0;
@@ -133,7 +133,6 @@ public class RecipeService {
 		recipe.setCaloriesPerServing(caloriesPerServing);
 		recipe.setProteinPerServing(proteinPerServing);
 
-		recipeRepository.save(recipe);
-
+		return recipeRepository.save(recipe);
 	}
 }
