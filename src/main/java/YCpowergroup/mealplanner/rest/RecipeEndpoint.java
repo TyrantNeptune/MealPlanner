@@ -98,4 +98,8 @@ public class RecipeEndpoint {
 		recipeService.addMultipleRecipes(recipes);
 	}
 
+	@PostMapping("finishrecipe/{recipeid}")
+	public Recipe finishRecipe(@PathVariable long recipeid) {
+		return recipeService.updateNutritionValues(recipeid);
+	}
 }
