@@ -13,6 +13,8 @@ public class RecipeIngredient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    private String category;
+
     @ManyToOne
     @JsonBackReference(value = "name")
     private Recipe recipe;
@@ -52,6 +54,14 @@ public class RecipeIngredient {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public Recipe getRecipe() {
