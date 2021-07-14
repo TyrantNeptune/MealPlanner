@@ -21,8 +21,7 @@ public class Meal {
     @Enumerated(EnumType.STRING)
     private MealType mealType;
 
-    @OneToMany(mappedBy = "meal")
-    @JsonManagedReference(value = "name")
+    @ManyToMany
     private List<Recipe> recipes;
 
     @ManyToOne

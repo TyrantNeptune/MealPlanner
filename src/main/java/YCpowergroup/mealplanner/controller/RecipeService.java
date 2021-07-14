@@ -96,4 +96,44 @@ public class RecipeService {
 	public void addMultipleRecipes(Iterable<Recipe> recipes) {
 		recipeRepository.saveAll(recipes);
 	}
+
+	public double calculateNutritionValuesPerServingGr(double amount, double valuePer100) {
+		double valuePer1 = valuePer100 / 100.0;
+		double totalValueInRecipe = valuePer1 * amount;
+
+		return totalValueInRecipe;
+	}
+
+	public void updateNutritionValues(Long recipeId) {
+		Recipe recipe = recipeRepository.findById(recipeId).get();
+		List<RecipeIngredient> recipeIngredients = recipe.getRecipeIngredients();
+		double totalCarbsInRecipe = 0.0;
+		double totalNetCarbsInRecipe = 0.0;
+		double totalFatsInRecipe = 0.0;
+		double totalCaloriesInRecipe = 0.0;
+		double totalProteinInRecipe = 0.0;
+
+		for (RecipeIngredient recipeIngredient : recipeIngredients) {
+			totalCarbsInRecipe += calculateNutritionValuesPerServingGr(recipeIngredient.getAmount(), recipeIngredient.getIngredient().getCarbs());
+			totalNetCarbsInRecipe += calculateNutritionValuesPerServingGr(recipeIngredient.getAmount(), recipeIngredient.getIngredient().getNetCarbs());
+			totalFatsInRecipe += calculateNutritionValuesPerServingGr(recipeIngredient.getAmount(), recipeIngredient.getIngredient().getFats());
+			totalCaloriesInRecipe += calculateNutritionValuesPerServingGr(recipeIngredient.getAmount(), recipeIngredient.getIngredient().getCalories());
+			totalProteinInRecipe += calculateNutritionValuesPerServingGr(recipeIngredient.getAmount(), recipeIngredient.getIngredient().getProtein());
+		}
+
+		double carbsPerServing = totalCarbsInRecipe / recipe.getServings();
+		double netCarbsPerServing = totalNetCarbsInRecipe / recipe.getServings();
+		double fatsPerServing = totalFatsInRecipe / recipe.getServings();
+		double caloriesPerServing = totalCaloriesInRecipe / recipe.getServings();
+		double proteinPerServing = totalProteinInRecipe / recipe.getServings();
+
+		recipe.setCarbsPerServing(carbsPerServing);
+		recipe.setNetCarbsPerServing(netCarbsPerServing);
+		recipe.setFatsPerServing(fatsPerServing);
+		recipe.setCaloriesPerServing(caloriesPerServing);
+		recipe.setProteinPerServing(proteinPerServing);
+
+		recipeRepository.save(recipe);
+
+	}
 }

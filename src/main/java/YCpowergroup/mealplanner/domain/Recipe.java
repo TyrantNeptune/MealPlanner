@@ -34,10 +34,6 @@ public class Recipe {
 	@JsonManagedReference(value = "name")
 	private List<RecipeIngredient> recipeIngredients;
 
-	@ManyToOne
-	@JsonBackReference(value = "name")
-	private Meal meal;
-
 	private double carbsPerServing;
 
 	private double netCarbsPerServing;
@@ -122,14 +118,6 @@ public class Recipe {
 
 	public List<RecipeIngredient> getRecipeIngredients() {
 		return recipeIngredients;
-	}
-
-	public Meal getMeal() {
-		return meal;
-	}
-
-	public void setMeal(Meal meal) {
-		this.meal = meal;
 	}
 
 	public void setRecipeIngredients(List<RecipeIngredient> recipeIngredients) {
