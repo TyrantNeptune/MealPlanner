@@ -3,6 +3,7 @@ package YCpowergroup.mealplanner.controller;
 import YCpowergroup.mealplanner.domain.Ingredient;
 import YCpowergroup.mealplanner.domain.Recipe;
 import YCpowergroup.mealplanner.domain.RecipeIngredient;
+import YCpowergroup.mealplanner.domain.Unit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -98,10 +99,45 @@ public class RecipeService {
 	}
 
 	public double calculateNutritionValuesPerServingGr(double amount, double valuePer100) {
-		double valuePer1 = valuePer100 / 100.0;
-		double totalValueInRecipe = valuePer1 * amount;
+		double valuePer1Gr = valuePer100 / 100.0;
+		double totalGrValueInRecipe = valuePer1Gr * amount;
 
-		return totalValueInRecipe;
+		return totalGrValueInRecipe;
+	}
+
+	public double calculateNutritionValuesPerServingMl(double amount, double valuePer100, double density) {
+		double valuePer100Ml = valuePer100 * density;
+		double valuePer1Ml = valuePer100Ml/ 100.0;
+		double totalMlValueInRecipe = valuePer1Ml * amount;
+
+		return totalMlValueInRecipe;
+	}
+
+	public double calculateNutritionValuesPerServingTbsp(double amount, double valuePer100, double density) {
+		double valuePer100Ml = valuePer100 * density;
+		double valuePer1Ml = valuePer100Ml/ 100.0;
+		double valuePerTbsp = valuePer1Ml * 15.0;
+		double totalTbspValueInRecipe = valuePerTbsp * amount;
+
+		return totalTbspValueInRecipe;
+	}
+
+	public double calculateNutritionValuesPerServingTsp(double amount, double valuePer100, double density) {
+		double valuePer100Ml = valuePer100 * density;
+		double valuePer1Ml = valuePer100Ml/ 100.0;
+		double valuePerTsp = valuePer1Ml * 5.0;
+		double totalTspValueInRecipe = valuePerTsp * amount;
+
+		return totalTspValueInRecipe;
+	}
+
+	public double calculateNutritionValuesPerServingCup(double amount, double valuePer100, double density) {
+		double valuePer100Ml = valuePer100 * density;
+		double valuePer1Ml = valuePer100Ml/ 100.0;
+		double valuePerCup = valuePer1Ml * 236.588;
+		double totalCupValueInRecipe = valuePerCup * amount;
+
+		return totalCupValueInRecipe;
 	}
 
 	public Recipe updateNutritionValues(Long recipeId) {
@@ -114,11 +150,43 @@ public class RecipeService {
 		double totalProteinInRecipe = 0.0;
 
 		for (RecipeIngredient recipeIngredient : recipeIngredients) {
-			totalCarbsInRecipe += calculateNutritionValuesPerServingGr(recipeIngredient.getAmount(), recipeIngredient.getIngredient().getCarbs());
-			totalNetCarbsInRecipe += calculateNutritionValuesPerServingGr(recipeIngredient.getAmount(), recipeIngredient.getIngredient().getNetCarbs());
-			totalFatsInRecipe += calculateNutritionValuesPerServingGr(recipeIngredient.getAmount(), recipeIngredient.getIngredient().getFats());
-			totalCaloriesInRecipe += calculateNutritionValuesPerServingGr(recipeIngredient.getAmount(), recipeIngredient.getIngredient().getCalories());
-			totalProteinInRecipe += calculateNutritionValuesPerServingGr(recipeIngredient.getAmount(), recipeIngredient.getIngredient().getProtein());
+			if (recipeIngredient.getUnit() == Unit.GR) {
+				totalCarbsInRecipe += calculateNutritionValuesPerServingGr(recipeIngredient.getAmount(), recipeIngredient.getIngredient().getCarbs());
+				totalNetCarbsInRecipe += calculateNutritionValuesPerServingGr(recipeIngredient.getAmount(), recipeIngredient.getIngredient().getNetCarbs());
+				totalFatsInRecipe += calculateNutritionValuesPerServingGr(recipeIngredient.getAmount(), recipeIngredient.getIngredient().getFats());
+				totalCaloriesInRecipe += calculateNutritionValuesPerServingGr(recipeIngredient.getAmount(), recipeIngredient.getIngredient().getCalories());
+				totalProteinInRecipe += calculateNutritionValuesPerServingGr(recipeIngredient.getAmount(), recipeIngredient.getIngredient().getProtein());
+			}
+			else if (recipeIngredient.getUnit() == Unit.ML) {
+				totalCarbsInRecipe += calculateNutritionValuesPerServingMl(recipeIngredient.getAmount(), recipeIngredient.getIngredient().getCarbs(), recipeIngredient.getIngredient().getDensity());
+				totalNetCarbsInRecipe += calculateNutritionValuesPerServingMl(recipeIngredient.getAmount(), recipeIngredient.getIngredient().getNetCarbs(), recipeIngredient.getIngredient().getDensity());
+				totalFatsInRecipe += calculateNutritionValuesPerServingMl(recipeIngredient.getAmount(), recipeIngredient.getIngredient().getFats(), recipeIngredient.getIngredient().getDensity());
+				totalCaloriesInRecipe += calculateNutritionValuesPerServingMl(recipeIngredient.getAmount(), recipeIngredient.getIngredient().getCalories(), recipeIngredient.getIngredient().getDensity());
+				totalProteinInRecipe += calculateNutritionValuesPerServingMl(recipeIngredient.getAmount(), recipeIngredient.getIngredient().getProtein(), recipeIngredient.getIngredient().getDensity());
+			}
+			else if (recipeIngredient.getUnit() == Unit.TBSP) {
+				totalCarbsInRecipe += calculateNutritionValuesPerServingTbsp(recipeIngredient.getAmount(), recipeIngredient.getIngredient().getCarbs(), recipeIngredient.getIngredient().getDensity());
+				totalNetCarbsInRecipe += calculateNutritionValuesPerServingTbsp(recipeIngredient.getAmount(), recipeIngredient.getIngredient().getNetCarbs(), recipeIngredient.getIngredient().getDensity());
+				totalFatsInRecipe += calculateNutritionValuesPerServingTbsp(recipeIngredient.getAmount(), recipeIngredient.getIngredient().getFats(), recipeIngredient.getIngredient().getDensity());
+				totalCaloriesInRecipe += calculateNutritionValuesPerServingTbsp(recipeIngredient.getAmount(), recipeIngredient.getIngredient().getCalories(), recipeIngredient.getIngredient().getDensity());
+				totalProteinInRecipe += calculateNutritionValuesPerServingTbsp(recipeIngredient.getAmount(), recipeIngredient.getIngredient().getProtein(), recipeIngredient.getIngredient().getDensity());
+			}
+
+			else if (recipeIngredient.getUnit() == Unit.TSP) {
+				totalCarbsInRecipe += calculateNutritionValuesPerServingTsp(recipeIngredient.getAmount(), recipeIngredient.getIngredient().getCarbs(), recipeIngredient.getIngredient().getDensity());
+				totalNetCarbsInRecipe += calculateNutritionValuesPerServingTsp(recipeIngredient.getAmount(), recipeIngredient.getIngredient().getNetCarbs(), recipeIngredient.getIngredient().getDensity());
+				totalFatsInRecipe += calculateNutritionValuesPerServingTsp(recipeIngredient.getAmount(), recipeIngredient.getIngredient().getFats(), recipeIngredient.getIngredient().getDensity());
+				totalCaloriesInRecipe += calculateNutritionValuesPerServingTsp(recipeIngredient.getAmount(), recipeIngredient.getIngredient().getCalories(), recipeIngredient.getIngredient().getDensity());
+				totalProteinInRecipe += calculateNutritionValuesPerServingTsp(recipeIngredient.getAmount(), recipeIngredient.getIngredient().getProtein(), recipeIngredient.getIngredient().getDensity());
+			}
+
+			else if (recipeIngredient.getUnit() == Unit.CUP) {
+				totalCarbsInRecipe += calculateNutritionValuesPerServingCup(recipeIngredient.getAmount(), recipeIngredient.getIngredient().getCarbs(), recipeIngredient.getIngredient().getDensity());
+				totalNetCarbsInRecipe += calculateNutritionValuesPerServingCup(recipeIngredient.getAmount(), recipeIngredient.getIngredient().getNetCarbs(), recipeIngredient.getIngredient().getDensity());
+				totalFatsInRecipe += calculateNutritionValuesPerServingCup(recipeIngredient.getAmount(), recipeIngredient.getIngredient().getFats(), recipeIngredient.getIngredient().getDensity());
+				totalCaloriesInRecipe += calculateNutritionValuesPerServingCup(recipeIngredient.getAmount(), recipeIngredient.getIngredient().getCalories(), recipeIngredient.getIngredient().getDensity());
+				totalProteinInRecipe += calculateNutritionValuesPerServingCup(recipeIngredient.getAmount(), recipeIngredient.getIngredient().getProtein(), recipeIngredient.getIngredient().getDensity());
+			}
 		}
 
 		double carbsPerServing = totalCarbsInRecipe / recipe.getServings();

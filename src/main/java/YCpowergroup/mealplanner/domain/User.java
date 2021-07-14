@@ -18,7 +18,7 @@ public class User {
     @OneToMany
     private List<Recipe> recipes;
 
-    private List<MealPlan> mealPlans;
+//    private List<MealPlan> mealPlans;
     
     public long getId() {
         return id;
@@ -64,11 +64,11 @@ public class User {
         recipes.add(recipe);
     }
 
-    public List<MealPlan> getMealPlans() {
-        return mealPlans;
-    }
-
-    public void setMealPlans(List<MealPlan> mealPlans) {
-        this.mealPlans = mealPlans;
-    }
+//    public List<MealPlan> getMealPlans() {
+//        return mealPlans;
+//    }
+//
+//    public void setMealPlans(List<MealPlan> mealPlans) {
+//        this.mealPlans = mealPlans;
+//    }
 }
