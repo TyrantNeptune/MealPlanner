@@ -21,7 +21,7 @@ public class Recipe {
 	@Column(columnDefinition = "text")
 	private String instructions;
 
-	//private String picture;
+	private String picture;
 
 	private boolean breakfast;
 
@@ -32,6 +32,18 @@ public class Recipe {
 	@OneToMany(mappedBy = "recipe")
 	@JsonManagedReference(value = "name")
 	private List<RecipeIngredient> recipeIngredients;
+
+	private double carbsPerServing;
+
+	private double netCarbsPerServing;
+
+	private double fatsPerServing;
+
+	private double caloriesPerServing;
+
+	private double proteinPerServing;
+
+	// Getters & Setters
 
 	public long getId() {
 		return id;
@@ -65,19 +77,19 @@ public class Recipe {
 		this.description = description;
 	}
 
-	public String getInstructions() { return instructions; }
+	public String getInstructions() {
+		return instructions; }
 
-	public void setInstructions(String instructions) {	this.instructions = instructions; }
+	public void setInstructions(String instructions) {
+		this.instructions = instructions; }
 
-	/*public String getPicture() {
+	public String getPicture() {
 		return picture;
 	}
 
 	public void setPicture(String picture) {
 		this.picture = picture;
 	}
-
-	 */
 
 	public boolean isBreakfast() {
 		return breakfast;
@@ -102,11 +114,52 @@ public class Recipe {
 	public void setDinner(boolean dinner) {
 		this.dinner = dinner;
 	}
+
 	public List<RecipeIngredient> getRecipeIngredients() {
 		return recipeIngredients;
 	}
 
 	public void setRecipeIngredients(List<RecipeIngredient> recipeIngredients) {
 		this.recipeIngredients = recipeIngredients;
+	}
+
+	public double getCarbsPerServing() {
+		return carbsPerServing;
+	}
+
+	public void setCarbsPerServing(double carbsPerServing) {
+		this.carbsPerServing = carbsPerServing;
+	}
+
+	public double getNetCarbsPerServing() {
+		return netCarbsPerServing;
+	}
+
+	public void setNetCarbsPerServing(double netCarbsPerServing) {
+		this.netCarbsPerServing = netCarbsPerServing;
+	}
+
+	public double getFatsPerServing() {
+		return fatsPerServing;
+	}
+
+	public void setFatsPerServing(double fatsPerServing) {
+		this.fatsPerServing = fatsPerServing;
+	}
+
+	public double getCaloriesPerServing() {
+		return caloriesPerServing;
+	}
+
+	public void setCaloriesPerServing(double caloriesPerServing) {
+		this.caloriesPerServing = caloriesPerServing;
+	}
+
+	public double getProteinPerServing() {
+		return proteinPerServing;
+	}
+
+	public void setProteinPerServing(double proteinPerServing) {
+		this.proteinPerServing = proteinPerServing;
 	}
 }
