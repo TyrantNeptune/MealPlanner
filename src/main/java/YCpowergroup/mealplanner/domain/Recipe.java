@@ -1,5 +1,6 @@
 package YCpowergroup.mealplanner.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -32,6 +33,10 @@ public class Recipe {
 	@OneToMany(mappedBy = "recipe")
 	@JsonManagedReference(value = "name")
 	private List<RecipeIngredient> recipeIngredients;
+
+	@ManyToOne
+	@JsonBackReference(value = "name")
+	private Meal meal;
 
 	public long getId() {
 		return id;
@@ -104,6 +109,14 @@ public class Recipe {
 	}
 	public List<RecipeIngredient> getRecipeIngredients() {
 		return recipeIngredients;
+	}
+
+	public Meal getMeal() {
+		return meal;
+	}
+
+	public void setMeal(Meal meal) {
+		this.meal = meal;
 	}
 
 	public void setRecipeIngredients(List<RecipeIngredient> recipeIngredients) {
