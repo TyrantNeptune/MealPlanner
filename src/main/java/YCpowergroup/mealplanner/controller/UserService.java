@@ -13,4 +13,16 @@ public class UserService {
 	public Iterable<User> findAllUsers(){
 		return userRepository.findAll();
 	}
+
+	public User addUser(User user) {
+		return userRepository.save(user);
+	}
+
+	public User findUserById(long userid) {
+		return userRepository.findById(userid).get();
+	}
+
+	public void deleteUserById(long userid) {
+		userRepository.deleteById(userid);
+	}
 }
