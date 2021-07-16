@@ -35,6 +35,10 @@ public class RecipeService {
 		return ingredientRepository.findAll();
 	}
 
+	public Ingredient findIngredientById(Long ingredientId) {
+		return ingredientRepository.findById(ingredientId).get();
+	}
+
 	public List<Recipe> findRecipesByIngredient(String ingredientName) {
 		List<Ingredient> ingredients = ingredientRepository.findAllByNameContaining(ingredientName);
 		List<Long> recipeIngredientIds = new ArrayList<>();
@@ -200,6 +204,8 @@ public class RecipeService {
 		recipe.setFatsPerServing(fatsPerServing);
 		recipe.setCaloriesPerServing(caloriesPerServing);
 		recipe.setProteinPerServing(proteinPerServing);
+
+		System.out.println("Saving recipe: " + recipe.getName());
 
 		return recipeRepository.save(recipe);
 	}
