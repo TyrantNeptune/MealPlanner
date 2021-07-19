@@ -93,9 +93,20 @@ public class RecipeEndpoint {
 		return recipeService.findIngredientsByName(ingredientname);
 	}
 
+	@GetMapping("findingredientbyid/{ingredientid}")
+	public Ingredient findIngredientById(@PathVariable Long ingredientid) {
+		System.out.println("Finding ingredient with id: " + ingredientid);
+		return recipeService.findIngredientById(ingredientid);
+	}
+
+
 	@PostMapping("addmultiplerecipes")
 	public void addMultipleRecipes(@RequestBody Iterable<Recipe> recipes) {
 		recipeService.addMultipleRecipes(recipes);
 	}
 
+	@PostMapping("finishrecipe/{recipeid}")
+	public Recipe finishRecipe(@PathVariable long recipeid) {
+		return recipeService.updateNutritionValues(recipeid);
+	}
 }

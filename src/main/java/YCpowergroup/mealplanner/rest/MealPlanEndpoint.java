@@ -67,4 +67,6 @@ public class MealPlanEndpoint {
         return mealPlanService.findMealsByMealType(mealtype);
     }
 
+
+
 }

@@ -1,10 +1,12 @@
 package YCpowergroup.mealplanner.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Meal {
@@ -19,8 +21,8 @@ public class Meal {
     @Enumerated(EnumType.STRING)
     private MealType mealType;
 
-    @OneToOne
-    private Recipe recipe;
+    @ManyToMany
+    private List<Recipe> recipes;
 
     @ManyToOne
     @JsonBackReference(value = "name")
@@ -58,12 +60,12 @@ public class Meal {
         this.mealType = mealType;
     }
 
-    public Recipe getRecipe() {
-        return recipe;
+    public List<Recipe> getRecipes() {
+        return recipes;
     }
 
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
+    public void setRecipes(List<Recipe> recipes) {
+        this.recipes = recipes;
     }
 
     public MealPlan getMealPlan() {

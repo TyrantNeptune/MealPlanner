@@ -12,7 +12,7 @@ public class Ingredient {
     private long Id;
     
     private String name;
-    private int calories;
+    private double calories;
     private double carbs;
     private double netCarbs;
     private double fats;
@@ -35,11 +35,11 @@ public class Ingredient {
 		this.name = name;
 	}
 
-	public int getCalories() {
+	public double getCalories() {
 		return calories;
 	}
 
-	public void setCalories(int calories) {
+	public void setCalories(double calories) {
 		this.calories = calories;
 	}
 
