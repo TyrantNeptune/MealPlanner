@@ -75,6 +75,48 @@ public class RecipeService {
 		return recipeIngredientRepository.findById(id);
 	}
 
+	public void editRecipeIngredient(RecipeIngredient recipeIngredient, long id){
+		if(recipeIngredientRepository.findById(id).isEmpty()){
+			System.out.println("Couldn't edit recipe ingredient with id " + id + " since it could not be found in the database");
+			return;
+		}
+
+		RecipeIngredient recipeIngredientTemp   = recipeIngredientRepository.findById(id).get();
+		recipeIngredientTemp.setAmount(recipeIngredient.getAmount());
+		recipeIngredientTemp.setCategory(recipeIngredient.getCategory());
+		recipeIngredientTemp.setIngredient(recipeIngredient.getIngredient());
+		recipeIngredientTemp.setRecipe(recipeIngredient.getRecipe());
+		recipeIngredientTemp.setUnit(recipeIngredient.getUnit());
+		recipeIngredientRepository.save(recipeIngredientTemp);
+		System.out.println("Recipe ingredient" + id + " edited.");
+	}
+
+
+	public void editRecipe(Recipe recipe, long id){
+		if(recipeRepository.findById(id).isEmpty()){
+			System.out.println("Couldn't edit recipe with id " + id + " since it could not be found in the database");
+			return;
+		}
+		Recipe recipeTemp   = recipeRepository.findById(id).get();
+		recipeTemp.setCaloriesPerServing(recipe.getCaloriesPerServing());
+		recipeTemp.setProteinPerServing(recipe.getProteinPerServing());
+		recipeTemp.setCarbsPerServing((recipe.getCarbsPerServing()));
+		recipeTemp.setFatsPerServing(recipe.getFatsPerServing());
+		recipeTemp.setNetCarbsPerServing(recipe.getNetCarbsPerServing());
+		recipeTemp.setName((recipe.getName()));
+		recipeTemp.setInstructions(recipe.getInstructions());
+		recipeTemp.setDescription(recipe.getDescription());
+		recipeTemp.setServings(recipe.getServings());
+		recipeTemp.setRecipeIngredients(recipe.getRecipeIngredients());
+		recipeTemp.setPicture(recipe.getPicture());
+		recipeTemp.setBreakfast(recipe.isBreakfast());
+		recipeTemp.setLunch(recipe.isLunch());
+		recipeTemp.setDinner(recipe.isDinner());
+		recipeRepository.save(recipeTemp);
+		System.out.println("Recipe " + id + " edited.");
+	}
+
+
 	public Iterable<Ingredient> findIngredientsByName(String ingredientName) {
 		List<Ingredient> ingredients = ingredientRepository.findAllByNameContaining(ingredientName);
 		System.out.println("Found " + ingredients.size() + " ingredients with name: " + ingredientName);
