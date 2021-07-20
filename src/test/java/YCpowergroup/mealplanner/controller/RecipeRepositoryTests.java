@@ -15,7 +15,7 @@ public class RecipeRepositoryTests {
     private RecipeRepository recipeRepository;
 
     @Test
-    public void checkIfRepositorySavesQuestion() {
+    public void checkIfRepositorySavesRecipe() {
         Recipe recipe = new Recipe();
         recipe.setName("Test");
         Recipe savedRecipe = recipeRepository.save(recipe);
@@ -26,7 +26,7 @@ public class RecipeRepositoryTests {
     }
 
     @Test
-    public void checkIfQuestionExistsInDatabase() {
+    public void checkIfRecipeExistsInDatabase() {
         Recipe recipe = new Recipe();
         recipe.setName("Test");
         recipeRepository.save(recipe);

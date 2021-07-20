@@ -2,10 +2,7 @@ package YCpowergroup.mealplanner.rest;
 
 import YCpowergroup.mealplanner.controller.RecipeRepository;
 import YCpowergroup.mealplanner.controller.RecipeService;
-import YCpowergroup.mealplanner.domain.MealType;
 import YCpowergroup.mealplanner.domain.Recipe;
-import org.junit.Before;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
-
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -54,7 +48,7 @@ public class RecipeEndpointTests {
     }
 
     @Test
-    public void getQuestionsFromEndpointWithMockedService() {
+    public void getRecipesFromEndpointWithMockedService() {
         ResponseEntity<String> entity = restTemplate.getForEntity("/allrecipes", String.class);
         System.out.println(entity);
 
