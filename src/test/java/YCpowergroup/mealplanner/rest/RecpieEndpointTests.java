@@ -59,7 +59,7 @@ public class RecpieEndpointTests {
         System.out.println(entity);
 
         assertEquals(200, entity.getStatusCodeValue());
-        assertEquals("[{\"id\":0,\"name\":null,\"servings\":0,\"description\":null,\"instructions\":null,\"picture\":null,\"breakfast\":false,\"lunch\":false,\"dinner\":false,\"recipeIngredients\":null},{\"id\":1,\"name\":\"test\",\"servings\":0,\"description\":null,\"instructions\":null,\"picture\":null,\"breakfast\":false,\"lunch\":false,\"dinner\":false,\"recipeIngredients\":null}]",
+        assertEquals("[{\"id\":0,\"name\":null,\"servings\":0,\"description\":null,\"instructions\":null,\"picture\":null,\"breakfast\":false,\"lunch\":false,\"dinner\":false,\"recipeIngredients\":null,\"carbsPerServing\":0.0,\"netCarbsPerServing\":0.0,\"fatsPerServing\":0.0,\"caloriesPerServing\":0.0,\"proteinPerServing\":0.0},{\"id\":1,\"name\":\"test\",\"servings\":0,\"description\":null,\"instructions\":null,\"picture\":null,\"breakfast\":false,\"lunch\":false,\"dinner\":false,\"recipeIngredients\":null,\"carbsPerServing\":0.0,\"netCarbsPerServing\":0.0,\"fatsPerServing\":0.0,\"caloriesPerServing\":0.0,\"proteinPerServing\":0.0}]",
                 entity.getBody());
 
         verify(recipeService).findAllRecipes();
