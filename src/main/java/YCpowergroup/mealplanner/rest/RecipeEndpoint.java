@@ -109,4 +109,13 @@ public class RecipeEndpoint {
 	public Recipe finishRecipe(@PathVariable long recipeid) {
 		return recipeService.updateNutritionValues(recipeid);
 	}
+
+	//@PutMapping("changerecipeingredient/{recipeingredientid}")
+	//public Optional<RecipeIngredient> changeRecipeIngredient(@PathVariable long recipeingredientid){return recipeService.changeRecipeInGredient(recipeingredientid)}
+
+	@DeleteMapping("deleterecipeingredient/{recipeingredientid")
+	public void deleteRecipeIngredient(@PathVariable long recipeingredientid){
+		System.out.println("Deleting RecipeIngredient with id " + recipeingredientid);
+		recipeService.deleteRecipeIngredient(recipeingredientid);}
+
 }

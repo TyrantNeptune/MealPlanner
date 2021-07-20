@@ -102,6 +102,17 @@ public class RecipeService {
 		recipeRepository.saveAll(recipes);
 	}
 
+	/*public Optional<RecipeIngredient> changeRecipeIngredient(long recipeIngredientId){
+		RecipeIngredient recipeIngredient = recipeIngredientRepository.findById(recipeIngredientId).get();
+
+	}
+
+	 */
+
+	public void deleteRecipeIngredient(long recipeIngredientId){
+		recipeIngredientRepository.deleteById(recipeIngredientId);
+	}
+
 	public double calculateNutritionValuesPerServingGr(double amount, double valuePer100) {
 		double valuePer1Gr = valuePer100 / 100.0;
 		double totalGrValueInRecipe = valuePer1Gr * amount;
