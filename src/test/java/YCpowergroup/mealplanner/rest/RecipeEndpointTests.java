@@ -24,7 +24,7 @@ import static org.mockito.Mockito.*;
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class RecpieEndpointTests {
+public class RecipeEndpointTests {
     @LocalServerPort
     private int port;
 
