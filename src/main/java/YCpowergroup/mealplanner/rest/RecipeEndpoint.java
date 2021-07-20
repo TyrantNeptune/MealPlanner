@@ -99,7 +99,6 @@ public class RecipeEndpoint {
 		return recipeService.findIngredientById(ingredientid);
 	}
 
-
 	@PostMapping("addmultiplerecipes")
 	public void addMultipleRecipes(@RequestBody Iterable<Recipe> recipes) {
 		recipeService.addMultipleRecipes(recipes);
@@ -108,5 +107,24 @@ public class RecipeEndpoint {
 	@PostMapping("finishrecipe/{recipeid}")
 	public Recipe finishRecipe(@PathVariable long recipeid) {
 		return recipeService.updateNutritionValues(recipeid);
+	}
+
+	//@PutMapping("changerecipeingredient/{recipeingredientid}")
+	//public Optional<RecipeIngredient> changeRecipeIngredient(@PathVariable long recipeingredientid){return recipeService.changeRecipeInGredient(recipeingredientid)}
+
+	@DeleteMapping("deleterecipeingredient/{recipeingredientid}")
+	public void deleteRecipeIngredient(@PathVariable long recipeingredientid){
+		System.out.println("Deleting RecipeIngredient with id " + recipeingredientid);
+		recipeService.deleteRecipeIngredient(recipeingredientid);}
+
+
+	@PutMapping ("editrecipeingredient/{id}")
+	public void editRecipeIngredient(@RequestBody RecipeIngredient recipeIngredient, @PathVariable long id){
+		recipeService.editRecipeIngredient(recipeIngredient, id);
+	}
+
+	@PutMapping ("editrecipe/{id}")
+	public void editRecipeIngredient(@RequestBody Recipe recipe, @PathVariable long id){
+		recipeService.editRecipe(recipe, id);
 	}
 }
