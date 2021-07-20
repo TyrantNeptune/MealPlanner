@@ -39,7 +39,6 @@ public class RecipeEndpoint {
 		return recipeService.findRecipeById(recipeid);
 	}
 
-
 	@PostMapping("addrecipeingredient")
 	public void addIngredientToRecipe(@RequestBody RecipeIngredient recipeIngredient) {
 		System.out.println("it works");
@@ -97,5 +96,4 @@ public class RecipeEndpoint {
 	public void addMultipleRecipes(@RequestBody Iterable<Recipe> recipes) {
 		recipeService.addMultipleRecipes(recipes);
 	}
-
 }

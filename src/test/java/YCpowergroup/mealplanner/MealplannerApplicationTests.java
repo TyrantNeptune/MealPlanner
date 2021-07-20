@@ -5,6 +5,8 @@ import YCpowergroup.mealplanner.domain.Recipe;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.Collection;
 
@@ -19,17 +21,17 @@ class MealplannerApplicationTests {
 	@BeforeAll
 	static void init() {
 		testRecipe = new Recipe();
-		testRecipe.setName("testing");
-		testRecipe.setServings(4);
 	}
 
 	@Test
 	void recipeNameTest() {
+		testRecipe.setName("testing");
 		assertEquals("testing", testRecipe.getName());
 	}
 
 	@Test
 	void recipeServingsTest() {
+		testRecipe.setServings(4);
 		assertEquals(4, testRecipe.getServings());
 	}
 }
