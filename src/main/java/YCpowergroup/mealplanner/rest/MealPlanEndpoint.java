@@ -67,6 +67,10 @@ public class MealPlanEndpoint {
         return mealPlanService.findMealsByMealType(mealtype);
     }
 
-
+    @PostMapping("generatemealplan/{servings}")
+    public MealPlan generateMealPlan(@RequestBody MealPlan mealPlan, @PathVariable int servings){
+        System.out.println("Generating mealplan from "+mealPlan.getStart()+" to "+mealPlan.getEnd());
+        return mealPlanService.generateMealPlan(mealPlan, servings);
+    }
 
 }
