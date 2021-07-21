@@ -20,6 +20,7 @@ public class RecipeRepositoryTests {
         recipe.setName("Test");
         Recipe savedRecipe = recipeRepository.save(recipe);
         recipe.setName("Is dit een andere test?");
+        recipeRepository.delete(savedRecipe);
 
         assertNotNull(savedRecipe);
         assertEquals(recipe, savedRecipe);
@@ -31,6 +32,7 @@ public class RecipeRepositoryTests {
         recipe.setName("Test");
         recipeRepository.save(recipe);
         Recipe foundRecipe = recipeRepository.findById(recipe.getId()).get();
+        recipeRepository.delete(foundRecipe);
 
         assertEquals(recipe.getId(), foundRecipe.getId());
         assertEquals(recipe.getName(), foundRecipe.getName());
