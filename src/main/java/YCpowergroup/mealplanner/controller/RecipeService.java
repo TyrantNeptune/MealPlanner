@@ -42,15 +42,18 @@ public class RecipeService {
 	public List<Recipe> findRecipesByIngredient(String ingredientName) {
 		List<Ingredient> ingredients = ingredientRepository.findAllByNameContaining(ingredientName);
 		List<Long> recipeIngredientIds = new ArrayList<>();
+		List<Long> recipeIds = new ArrayList<>();
 		for (Ingredient ingredient : ingredients) {
 			List<RecipeIngredient> recipeIngredients = recipeIngredientRepository.findByIngredient(ingredient);
 			for (RecipeIngredient recipeIngredient : recipeIngredients) {
+				recipeIds.add(recipeIngredient.getRecipe().getId());
 				recipeIngredientIds.add(recipeIngredient.getId());
 			}
 		}
 		System.out.println("Found " + ingredients.size() + " ingredients with name: " + ingredientName);
 
-		return recipeRepository.findByRecipeIngredientsIdIn(recipeIngredientIds);
+		return recipeRepository.findByIdIn(recipeIds);
+//		return recipeRepository.findByRecipeIngredientsIdIn(recipeIngredientIds);
 	}
 
 	public Recipe addRecipe(Recipe recipe) {
