@@ -3,6 +3,7 @@ package YCpowergroup.mealplanner.rest;
 import YCpowergroup.mealplanner.controller.MealPlanService;
 import YCpowergroup.mealplanner.domain.Meal;
 import YCpowergroup.mealplanner.domain.MealPlan;
+import YCpowergroup.mealplanner.domain.Recipe;
 import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -53,6 +54,13 @@ public class MealPlanEndpoint {
         System.out.println("Adding meal on "+meal.getDate()+" to mealplan with id "+mealplanid);
         return mealPlanService.addMealToMealPlan(meal, mealplanid);
     }
+
+    @PutMapping("editmeal/{mealid}")
+    public Meal editMeal(@RequestBody Meal meal, @PathVariable long mealid) {
+        System.out.println("Editing meal with id: " + mealid);
+        return mealPlanService.editMeal(meal, mealid);
+    }
+
 
     @GetMapping("findmealbyid/{mealid}")
     public Optional<Meal> findMealById(@PathVariable long mealid){
