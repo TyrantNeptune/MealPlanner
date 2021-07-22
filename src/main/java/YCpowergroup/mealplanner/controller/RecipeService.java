@@ -41,19 +41,16 @@ public class RecipeService {
 
 	public List<Recipe> findRecipesByIngredient(String ingredientName) {
 		List<Ingredient> ingredients = ingredientRepository.findAllByNameContaining(ingredientName);
-		List<Long> recipeIngredientIds = new ArrayList<>();
 		List<Long> recipeIds = new ArrayList<>();
 		for (Ingredient ingredient : ingredients) {
 			List<RecipeIngredient> recipeIngredients = recipeIngredientRepository.findByIngredient(ingredient);
 			for (RecipeIngredient recipeIngredient : recipeIngredients) {
 				recipeIds.add(recipeIngredient.getRecipe().getId());
-				recipeIngredientIds.add(recipeIngredient.getId());
 			}
 		}
 		System.out.println("Found " + ingredients.size() + " ingredients with name: " + ingredientName);
 
 		return recipeRepository.findByIdIn(recipeIds);
-//		return recipeRepository.findByRecipeIngredientsIdIn(recipeIngredientIds);
 	}
 
 	public Recipe addRecipe(Recipe recipe) {
@@ -91,7 +88,7 @@ public class RecipeService {
 		recipeIngredientTemp.setRecipe(recipeIngredient.getRecipe());
 		recipeIngredientTemp.setUnit(recipeIngredient.getUnit());
 		recipeIngredientRepository.save(recipeIngredientTemp);
-		System.out.println("Recipe ingredient" + id + " edited.");
+		System.out.println("Recipe ingredient " + id + " edited.");
 	}
 
 
