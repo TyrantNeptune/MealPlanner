@@ -31,6 +31,10 @@ public class RecipeService {
 		return recipeRepository.findByNameLike("%"+recipeName+"%");
 	}
 
+	public Iterable<Recipe> findDistinctRecipesByNameIn(List<String> recipeNames) {
+		return recipeRepository.findDistinctRecipesByNameIn(recipeNames);
+	}
+
 	public Iterable<Ingredient> findAllIngredients() {
 		return ingredientRepository.findAll();
 	}

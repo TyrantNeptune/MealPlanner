@@ -22,4 +22,6 @@ public interface RecipeRepository extends CrudRepository<Recipe,Long> {
 	List<Recipe> findByLunchTrue();
 
 	List<Recipe> findByDinnerTrue();
+
+	List<Recipe> findDistinctRecipesByNameIn(List<String> recipeNames);
 }
