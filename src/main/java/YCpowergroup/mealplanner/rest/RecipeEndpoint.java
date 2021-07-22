@@ -39,6 +39,10 @@ public class RecipeEndpoint {
 		return recipeService.findRecipeById(recipeid);
 	}
 
+	@PostMapping("findrecipesbynames")
+	public Iterable<Recipe> findRecipesByNames(@RequestBody List<String> recipeNames) {
+		return  recipeService.findDistinctRecipesByNameIn(recipeNames);
+	}
 
 	@PostMapping("addrecipeingredient")
 	public void addIngredientToRecipe(@RequestBody RecipeIngredient recipeIngredient) {

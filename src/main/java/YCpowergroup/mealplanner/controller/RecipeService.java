@@ -31,6 +31,10 @@ public class RecipeService {
 		return recipeRepository.findByNameLike("%"+recipeName+"%");
 	}
 
+	public Iterable<Recipe> findDistinctRecipesByNameIn(List<String> recipeNames) {
+		return recipeRepository.findDistinctRecipesByNameIn(recipeNames);
+	}
+
 	public Iterable<Ingredient> findAllIngredients() {
 		return ingredientRepository.findAll();
 	}
@@ -41,16 +45,16 @@ public class RecipeService {
 
 	public List<Recipe> findRecipesByIngredient(String ingredientName) {
 		List<Ingredient> ingredients = ingredientRepository.findAllByNameContaining(ingredientName);
-		List<Long> recipeIngredientIds = new ArrayList<>();
+		List<Long> recipeIds = new ArrayList<>();
 		for (Ingredient ingredient : ingredients) {
 			List<RecipeIngredient> recipeIngredients = recipeIngredientRepository.findByIngredient(ingredient);
 			for (RecipeIngredient recipeIngredient : recipeIngredients) {
-				recipeIngredientIds.add(recipeIngredient.getId());
+				recipeIds.add(recipeIngredient.getRecipe().getId());
 			}
 		}
 		System.out.println("Found " + ingredients.size() + " ingredients with name: " + ingredientName);
 
-		return recipeRepository.findByRecipeIngredientsIdIn(recipeIngredientIds);
+		return recipeRepository.findByIdIn(recipeIds);
 	}
 
 	public Recipe addRecipe(Recipe recipe) {
@@ -88,7 +92,7 @@ public class RecipeService {
 		recipeIngredientTemp.setRecipe(recipeIngredient.getRecipe());
 		recipeIngredientTemp.setUnit(recipeIngredient.getUnit());
 		recipeIngredientRepository.save(recipeIngredientTemp);
-		System.out.println("Recipe ingredient" + id + " edited.");
+		System.out.println("Recipe ingredient " + id + " edited.");
 	}
 
 
