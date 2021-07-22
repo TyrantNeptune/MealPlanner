@@ -15,6 +15,8 @@ public interface RecipeRepository extends CrudRepository<Recipe,Long> {
 
 	List<Recipe> findByRecipeIngredientsIdIn(List<Long> recipeIngredientIds);
 
+	List<Recipe> findByIdIn(List<Long> recipeIds);
+
 	List<Recipe> findByBreakfastTrue();
 
 	List<Recipe> findByLunchTrue();
