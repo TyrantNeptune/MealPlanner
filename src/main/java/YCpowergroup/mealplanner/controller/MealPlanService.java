@@ -33,6 +33,19 @@ public class MealPlanService {
         return mealPlanRepository.save(mealPlan);
     }
 
+    public MealPlan addMealPlanWithMeals(MealPlan mealPlan){
+        System.out.println("Adding new mealplan...");
+        mealPlanRepository.save(mealPlan);
+        generateMeals(mealPlan, 0,"generic");
+        return mealPlan;
+    }
+
+    public MealPlan generateMealPlan(MealPlan mealPlan, int servings){
+        mealPlan = mealPlanRepository.save(mealPlan);
+        generateMeals(mealPlan,servings,"random");
+        return mealPlan;
+    }
+
     public Iterable<Meal> findAllMeals(){return mealRepository.findAll();}
 
     public Meal addMealToMealPlan(Meal meal, Long mealPlanId){
@@ -55,42 +68,48 @@ public class MealPlanService {
         return mealRepository.findAllByMealType(MealType.valueOf(mealType));
     }
 
-    public MealPlan generateMealPlan(MealPlan mealPlan, int servings){
-        Period diff = Period.between(mealPlan.getStart(), mealPlan.getEnd());
-        int days = diff.getDays();
+    public List<Meal> generateMeals(MealPlan mealPlan, int servings, String method){
         List<Meal> meals = new ArrayList<Meal>();
         String[] mealTypeArr = {"breakfast","lunch","dinner"};
-        mealPlan = mealPlanRepository.save(mealPlan);
+        Period diff = Period.between(mealPlan.getStart(), mealPlan.getEnd());
+        int days = diff.getDays();
         for (int i=0;i<=days;i++){
             LocalDate tempDate = mealPlan.getStart().plusDays(i);
-            for (String mealType : mealTypeArr){
-                Meal meal =generateMeal(tempDate,mealType,servings,mealPlan);
+            for (String mealType : mealTypeArr) {
+                Meal meal = new Meal();
+                meal.setDate(tempDate);
+                meal.setServings(servings);
+                meal.setMealPlan(mealPlan);
+                if (mealType.equals("breakfast")){
+                    meal.setMealType(MealType.BREAKFAST);
+                }else if (mealType.equals("lunch")){
+                    meal.setMealType(MealType.LUNCH);
+                }else if(mealType.equals("dinner")){
+                    meal.setMealType(MealType.DINNER);
+                }
+                if (method == "random") {
+                    generateRandomRecipe(meal,mealType);
+                }
+                mealRepository.save(meal);
                 meals.add(meal);
             }
         }
-        return mealPlan;
+        return meals;
     }
 
-    public Meal generateMeal(LocalDate date, String mealType, int servings,MealPlan mealPlan){
-        Meal meal = new Meal();
-        meal.setDate(date);
-        meal.setServings(servings);
-        meal.setMealPlan(mealPlan);
+    public Recipe generateRandomRecipe(Meal meal,String mealType){
         List<Recipe> recipesWithType = new ArrayList<Recipe>();
         if (mealType.equals("breakfast")){
-            meal.setMealType(MealType.BREAKFAST);
             recipesWithType = recipeRepository.findByBreakfastTrue();
         }else if (mealType.equals("lunch")){
-            meal.setMealType(MealType.LUNCH);
             recipesWithType = recipeRepository.findByLunchTrue();
         }else if(mealType.equals("dinner")){
-            meal.setMealType(MealType.DINNER);
             recipesWithType = recipeRepository.findByDinnerTrue();
         }
         Random rand = new Random();
         Recipe randomRecipe =  recipesWithType.get(rand.nextInt(recipesWithType.size()));
         meal.setRecipes(Arrays.asList(randomRecipe));
-        return mealRepository.save(meal);
+        return randomRecipe;
     }
 
 }
