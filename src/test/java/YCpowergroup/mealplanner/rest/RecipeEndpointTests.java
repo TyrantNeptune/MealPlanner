@@ -13,6 +13,7 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.ResponseEntity;
 import java.util.Arrays;
 
+import static java.util.Optional.ofNullable;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
@@ -42,8 +43,8 @@ public class RecipeEndpointTests {
         recipeArray[1].setId((long)1);
         Iterable<Recipe> recipes = Arrays.asList(recipeArray);
 
-        when(recipeService.findRecipeById(recipeArray[0].getId())).thenReturn(java.util.Optional.ofNullable(recipeArray[0]));
-        when(recipeService.findRecipeById(recipeArray[1].getId())).thenReturn(java.util.Optional.ofNullable(recipeArray[1]));
+        when(recipeService.findRecipeById(recipeArray[0].getId())).thenReturn(ofNullable(recipeArray[0]));
+        when(recipeService.findRecipeById(recipeArray[1].getId())).thenReturn(ofNullable(recipeArray[1]));
         when(recipeService.findAllRecipes()).thenReturn(recipes);
     }
 

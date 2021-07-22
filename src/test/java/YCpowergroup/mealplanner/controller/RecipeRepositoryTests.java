@@ -20,7 +20,11 @@ public class RecipeRepositoryTests {
         recipe.setName("Test");
         Recipe savedRecipe = recipeRepository.save(recipe);
         recipe.setName("Is dit een andere test?");
+<<<<<<< Updated upstream
         recipeRepository.delete(savedRecipe);
+=======
+        recipeRepository.delete(recipe);
+>>>>>>> Stashed changes
 
         assertNotNull(savedRecipe);
         assertEquals(recipe, savedRecipe);
@@ -32,7 +36,11 @@ public class RecipeRepositoryTests {
         recipe.setName("Test");
         recipeRepository.save(recipe);
         Recipe foundRecipe = recipeRepository.findById(recipe.getId()).get();
+<<<<<<< Updated upstream
         recipeRepository.delete(foundRecipe);
+=======
+        recipeRepository.delete(recipe);
+>>>>>>> Stashed changes
 
         assertEquals(recipe.getId(), foundRecipe.getId());
         assertEquals(recipe.getName(), foundRecipe.getName());
