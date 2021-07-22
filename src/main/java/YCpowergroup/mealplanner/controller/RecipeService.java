@@ -112,7 +112,7 @@ public class RecipeService {
 		recipeTemp.setDescription(recipe.getDescription());
 		recipeTemp.setServings(recipe.getServings());
 		recipeTemp.setRecipeIngredients(recipe.getRecipeIngredients());
-		//recipeTemp.setPicture(recipe.getPicture());
+		recipeTemp.setPicture(recipe.getPicture());
 		recipeTemp.setBreakfast(recipe.isBreakfast());
 		recipeTemp.setLunch(recipe.isLunch());
 		recipeTemp.setDinner(recipe.isDinner());

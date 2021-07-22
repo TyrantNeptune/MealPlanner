@@ -1,9 +1,6 @@
 package YCpowergroup.mealplanner.controller;
 
-import YCpowergroup.mealplanner.domain.Meal;
-import YCpowergroup.mealplanner.domain.MealPlan;
-import YCpowergroup.mealplanner.domain.MealType;
-import YCpowergroup.mealplanner.domain.Recipe;
+import YCpowergroup.mealplanner.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -110,6 +107,22 @@ public class MealPlanService {
         Recipe randomRecipe =  recipesWithType.get(rand.nextInt(recipesWithType.size()));
         meal.setRecipes(Arrays.asList(randomRecipe));
         return randomRecipe;
+    }
+
+    public Meal editMeal(Meal meal, long id) {
+        if(mealRepository.findById(id).isEmpty()){
+            System.out.println("Couldn't edit meal with id " + id + " since it could not be found in the database");
+        }
+
+        Meal mealTemp = mealRepository.findById(id).get();
+//        mealTemp.setMealPlan(meal.getMealPlan());
+        mealTemp.setMealType(meal.getMealType());
+        mealTemp.setServings(meal.getServings());
+        mealTemp.setDate(meal.getDate());
+        mealTemp.setRecipes(meal.getRecipes());
+        System.out.println("Meal " + id + " edited");
+        return mealRepository.save(mealTemp);
+
     }
 
 }
