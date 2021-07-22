@@ -31,6 +31,12 @@ public class MealPlanEndpoint {
     }
 
     @PostMapping("addmealplan")
+    public MealPlan addMealPlanWithMeals(@RequestBody MealPlan mealPlan){
+        System.out.println("Adding mealplan starting on "+mealPlan.getStart());
+        return mealPlanService.addMealPlanWithMeals(mealPlan);
+    }
+
+    @PostMapping("addmealplanbasic")
     public MealPlan addMealplan(@RequestBody MealPlan mealPlan){
         System.out.println("Adding mealplan starting on "+mealPlan.getStart());
         return mealPlanService.addMealPlan(mealPlan);
